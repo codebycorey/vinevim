@@ -4,12 +4,12 @@ local options = {
     relativenumber = true,
 
     -- Tabs and Indents
-    tabstop = 2,
-    shiftwidth = 2,
+    tabstop = 4,
+    shiftwidth = 4,
     expandtab = true,
     smartindent = true,
     smartcase = true,
-    showtabline = 2,
+    showtabline = 4,
 
     -- Turn off Search Highlight
     hlsearch = false,
@@ -36,11 +36,11 @@ local options = {
     scrolloff = 8,
     cursorline = true,
 
-    signcolumn = 'yes',
-    colorcolumn = '80',
+    signcolumn = "yes",
+    colorcolumn = "80",
 
     showmode = false,
-    completeopt = { "menuone", "noselect" }, -- "noinsert"
+    --completeopt = { "menuone", "noselect" }, -- "noinsert"
 
     cmdheight = 1,
     updatetime = 300, -- 50
@@ -48,16 +48,16 @@ local options = {
     termguicolors = true,
     clipboard = "unnamedplus",
 
-    mouse="a",
+    mouse = "a",
 
     splitbelow = true,
     splitright = true,
 
-    guicursor = ''
+    guicursor = "",
 }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
-for k,v in pairs(options) do
+for k, v in pairs(options) do
     vim.opt[k] = v
 end

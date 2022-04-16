@@ -1,12 +1,15 @@
-require'extend/options'
-require'extend/plugins'
-require'extend/keymaps'
-require'extend/colors'
-require'extend/lsp'
-require'extend/cmp'
-require'extend/treesitter'
-require'extend/telescope'
-
-vim.cmd[[
-" runtime ./init.vim
-]]
+ require("extend/options")
+ require("extend/plugins")
+ require("extend/keymaps")
+ require("extend/colors")
+ require("extend/lsp")
+ require("extend/cmp")
+ require("extend/treesitter")
+ require("extend/telescope")
+ require("extend/indent")
+ require("extend/filetree")
+ require("extend/lualine")
+ require("extend/bufferline")
+ require("extend/autopairs")
+ require("extend/null-ls")
+ require("extend/comment")

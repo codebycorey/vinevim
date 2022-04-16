@@ -1,61 +1,90 @@
-local cmp_ok, cmp = pcall(require, 'cmp')
+local cmp_ok, cmp = pcall(require, "cmp")
 if not cmp_ok then
-  return
+    return
 end
 
-local kind_ok, lspkind = pcall(require, 'lspkind')
-if not kind_ok then
-  return
-end
-
-local snip_ok, luasnip = pcall(require, 'luasnip')
+local snip_ok, luasnip = pcall(require, "luasnip")
 if not snip_ok then
-  return
+    return
 end
 
-local tn_ok, tabnine = pcall(require, 'cmp_tabnine.config')
+local tn_ok, tabnine = pcall(require, "cmp_tabnine.config")
 if not tn_ok then
-  return
+    return
 end
 
-require('luasnip/loaders/from_vscode').lazy_load()
+local source_map = {
+    cmp_tabnine = "[TN]",
+    nvim_lsp = "[LSP]",
+    nvim_lua = "[Lua]",
+    buffer = "[Buffer]",
+    path = "[Path]",
+}
+
+local symbol_map = {
+    Text = "",
+    Method = "m",
+    Function = "",
+    Constructor = "",
+    Field = "",
+    Variable = "",
+    Class = "",
+    Interface = "",
+    Module = "",
+    Property = "",
+    Unit = "",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
+}
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 cmp.setup({
-  snippet = {
-    expend = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mappings = {
-    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
+    snippet = {
+        expend = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    window = {},
+    mapping = cmp.mapping.preset.insert({
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
     }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
-  formatting = {
-    format = lspkind.cmp_format({
-      mode = 'symbol',
-    })
-  },
-  sources = {
-    { name = 'cmp_tabnine' },
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer'},
-    { name = 'path' }
-  },
-  documentation = true,
+    formatting = {
+        format = function(entry, vim_item)
+            vim_item.kind = symbol_map[vim_item.kind]
+            vim_item.menu = source_map[entry.source.name]
+            return vim_item
+        end,
+    },
+    sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "cmp_tabnine" },
+        { name = "luasnip" },
+        { name = "path" },
+    }, {
+        { name = "buffer" },
+    }),
 })
 
 tabnine:setup({
-  max_lines = 1000,
-  max_num_results = 20,
-  sort = true,
-  run_on_every_keystroke = true,
-  snippet_placeholder = '..'
+    max_lines = 1000,
+    max_num_results = 20,
+    sort = true,
+    run_on_every_keystroke = true,
+    snippet_placeholder = "..",
 })
 
+require("luasnip.loaders.from_vscode").lazy_load()
