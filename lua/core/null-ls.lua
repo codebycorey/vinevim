@@ -19,7 +19,6 @@ local options = {
 
 null_ls.setup(options)
 
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
+local keymap = require('core/utils').keymap
 
-keymap("n", "<leader>bf", "<Cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+keymap("n", "<leader>bf", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
