@@ -2,6 +2,7 @@ local tree_ok, treesitter = pcall(require, "nvim-treesitter.configs")
 if not tree_ok then
     return
 end
+
 -- ignore_install is only because m1 chip
 treesitter.setup({
     highlight = {

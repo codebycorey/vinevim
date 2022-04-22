@@ -23,11 +23,12 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 
-local keymap = require("core/utils").keymap
+local keymap = require("vinevim.utils.keymap")
 
-keymap("n", "<leader>f", '<Cmd>lua require("telescope.builtin").find_files()<CR>')
-keymap("n", "<leader>g", '<Cmd>lua require("telescope.builtin").live_grep()<CR>')
-keymap("n", "<leader>b", '<Cmd>lua require("telescope.builtin").buffers()<CR>')
-keymap("n", "<leader>h", '<Cmd>lua require("telescope.builtin").help_tags()<CR>')
+keymap("n", "<C-p>", '<Cmd>lua require("telescope.builtin").git_files()<CR>')
+keymap("n", "<leader>pf", '<Cmd>lua require("telescope.builtin").find_files()<CR>')
+keymap("n", "<leader>pg", '<Cmd>lua require("telescope.builtin").live_grep()<CR>')
+keymap("n", "<leader>pb", '<Cmd>lua require("telescope.builtin").buffers()<CR>')
+keymap("n", "<leader>ph", '<Cmd>lua require("telescope.builtin").help_tags()<CR>')
 
 keymap("n", "<leader>gc", '<Cmd>lua require("telescope.builtin").git_branches()<CR>')

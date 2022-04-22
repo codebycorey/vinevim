@@ -14,6 +14,6 @@ local options = {
 
 nvim_tree.setup(options)
 
-local keymap = require('core/utils').keymap
+local keymap = require("vinevim.utils.keymap")
 
 keymap("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")
