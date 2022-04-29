@@ -4,6 +4,8 @@ if not tele_ok then
     return
 end
 
+local M = {}
+
 local actions = require("telescope.actions")
 
 telescope.setup({
@@ -23,12 +25,36 @@ telescope.setup({
 
 telescope.load_extension("fzf")
 
+M.reload_module = function()
+    local lua_dirs = vim.fn.glob("./lua/**/*", 0, 1)
+    for _, dir in ipairs(lua_dirs) do
+        dir = string.gsub(dir, "./lua/", "")
+        dir = dir:gsub("%.lua", "")
+        dir = dir:gsub("%/", ".")
+        dir = dir:gsub("%.init", "")
+        pcall(R, dir)
+    end
+end
+
+M.git_branches = function()
+    require("telescope.builtin").git_branches({
+        attach_mappings = function(_, map)
+            map("i", "<c-d>", actions.git_delete_branch)
+            map("n", "<c-d>", actions.git_delete_branch)
+            return true
+        end,
+    })
+end
+
 local keymap = require("vinevim.utils.keymap")
 
 keymap("n", "<C-p>", '<Cmd>lua require("telescope.builtin").git_files()<CR>')
-keymap("n", "<leader>pf", '<Cmd>lua require("telescope.builtin").find_files()<CR>')
+keymap("n", "<leader>pf", '<Cmd>lua require("telescope.builtin").find_files({ hidden = true })<CR>')
 keymap("n", "<leader>pg", '<Cmd>lua require("telescope.builtin").live_grep()<CR>')
 keymap("n", "<leader>pb", '<Cmd>lua require("telescope.builtin").buffers()<CR>')
 keymap("n", "<leader>ph", '<Cmd>lua require("telescope.builtin").help_tags()<CR>')
 
-keymap("n", "<leader>gc", '<Cmd>lua require("telescope.builtin").git_branches()<CR>')
+keymap("n", "<leader>gc", '<Cmd>lua require("vinevim.core.telescope").git_branches()<CR>')
+keymap("n", "<leader>so", '<Cmd>lua require("vinevim.core.telescope").reload_module()<CR>')
+
+return M

@@ -44,7 +44,7 @@ local setup_handlers = function()
     })
 end
 
-local setup_capabilities = function()
+local get_capabilities = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
     if pcall(require, "cmp_nvim_lsp") then
@@ -72,7 +72,7 @@ local setup_keymaps = function(bufnr)
     keymap("n", "gl", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
 end
 
-local setup_formatting = function(client)
+local disable_formatting = function(client)
     -- TODO: Make this easier to maintain
     if client.name == "tsserver" then
         client.resolved_capabilities.document_formatting = false
@@ -102,19 +102,46 @@ local setup_highlighting = function(client)
     end
 end
 
-M.setup = function()
-    setup_diagnostics()
-    setup_handlers()
-end
-
 -- on_attach to LSP server
-M.on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr)
     setup_keymaps(bufnr)
-    setup_formatting(client)
+    disable_formatting(client)
     setup_highlighting(client)
 end
 
--- capabilities to LSP server
-M.capabilities = setup_capabilities()
+local extend_config = function(server, base_config)
+    local server_config_module = "vinevim.lsp.configs." .. server
+
+    local ok, server_config = pcall(require, server_config_module)
+    if ok then
+        return vim.tbl_deep_extend("force", base_config, server_config)
+    end
+
+    return base_config
+end
+
+local get_config = function(server)
+    local base_config = {
+        on_attach = on_attach,
+        capabilities = get_capabilities(),
+    }
+    return extend_config(server, base_config)
+end
+
+local configure_lsp = function(servers)
+    local lspconfig = require("lspconfig")
+
+    -- Loop through list of servers
+    for _, server in ipairs(servers) do
+        local config = get_config(server)
+        lspconfig[server].setup(config)
+    end
+end
+
+M.setup = function(servers)
+    setup_diagnostics()
+    setup_handlers()
+    configure_lsp(servers)
+end
 
 return M

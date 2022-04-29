@@ -76,7 +76,7 @@ cmp.setup({
     },
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "cmp_tabnine" },
+        -- { name = "cmp_tabnine" },
         { name = "luasnip" },
         { name = "path" },
     }, {
@@ -87,11 +87,11 @@ cmp.setup({
     },
 })
 
-tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-    run_on_every_keystroke = true,
-    snippet_placeholder = "..",
-})
+-- tabnine:setup({
+--     max_lines = 1000,
+--     max_num_results = 20,
+--     sort = true,
+--     run_on_every_keystroke = true,
+--     snippet_placeholder = "..",
+-- })
 

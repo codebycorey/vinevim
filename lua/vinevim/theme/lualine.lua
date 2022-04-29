@@ -6,6 +6,8 @@ end
 local settings = {
     options = {
         disabled_filetypes = { "NvimTree" },
+        globalstatus = true,
+        theme = 'gruvbox'
     },
 }
 

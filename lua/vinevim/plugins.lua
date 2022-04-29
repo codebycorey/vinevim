@@ -37,6 +37,8 @@ return packer.startup({
         use("neovim/nvim-lspconfig")
         use("williamboman/nvim-lsp-installer")
         use("jose-elias-alvarez/null-ls.nvim")
+        use("ray-x/lsp_signature.nvim")
+        use("b0o/schemastore.nvim")
 
         -- CMP
         use("hrsh7th/nvim-cmp")
@@ -81,6 +83,6 @@ return packer.startup({
         end
     end,
     config = {
-        compile_path = packerUtil.join_paths(os.getenv("HOME"), ".nvim", "compiled", "packer_compiled.lua")
-    }
+        compile_path = packerUtil.join_paths(os.getenv("HOME"), ".nvim", "compiled", "packer_compiled.lua"),
+    },
 })
