@@ -74,6 +74,7 @@ return packer.startup({
         use("windwp/nvim-autopairs")
         use("lukas-reineke/indent-blankline.nvim")
         use("numToStr/Comment.nvim") -- Toggle comments
+        use("akinsho/toggleterm.nvim")
         -- ADD TSXJSX Comments plugin
 
         -- Automatically set up your configuration after cloning packer.nvim

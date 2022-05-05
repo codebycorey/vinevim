@@ -4,4 +4,4 @@ require("vinevim.core.cmp")
 require("vinevim.core.comment")
 require("vinevim.core.telescope")
 require("vinevim.core.treesitter")
-
+require("vinevim.core.toggleterm")

@@ -44,6 +44,5 @@ keymap("x", "<A-j>", ":move '>.+1<CR>gv-gv")
 keymap("x", "<A-k>", ":move '.-2<CR>gv-gv")
 
 keymap("n", "<C-f>", ":!tmux neww tmux-session<CR>")
-keymap("n", "<leader>ow", ":!tmux neww work-tmux<CR>")
 
 keymap("n", "<leader><leader>s", "<Cmd>source %<CR>")

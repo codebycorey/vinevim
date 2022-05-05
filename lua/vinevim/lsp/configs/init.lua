@@ -59,17 +59,21 @@ local setup_keymaps = function(bufnr)
         vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
     end
 
-    keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-    keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
-    keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
-    keymap("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>")
-    keymap("n", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
-    keymap("n", "<leader>rn", "<Cmd>lua vim.lsp.buf.rename()<CR>")
-    keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
-    keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-    keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>')
-    keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>')
-    keymap("n", "gl", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+    keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
+    keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
+    keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>")
+    keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>")
+    keymap("n", "<C-k>", ":lua vim.lsp.buf.signature_help()<CR>")
+    keymap("i", "<C-k>", ":lua vim.lsp.buf.signature_help()<CR>")
+
+    keymap("n", "<leader>vrn", ":lua vim.lsp.buf.rename()<CR>")
+    keymap("n", "<leader>vca", ":lua vim.lsp.buf.code_action()<CR>")
+
+    keymap("n", "vd", ":lua vim.diagnostics.open_float()<CR>")
+    keymap("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>")
+    keymap("n", "]d", ":lua vim.diagnostic.goto_next()<CR>")
+    keymap("n", "gl", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
 end
 
 local disable_formatting = function(client)

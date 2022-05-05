@@ -61,12 +61,15 @@ cmp.setup({
         end,
     },
     window = {},
-    mapping = cmp.mapping.preset.insert({
+    mapping = {
+        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-    }),
+    },
     formatting = {
         format = function(entry, vim_item)
             vim_item.kind = symbol_map[vim_item.kind]

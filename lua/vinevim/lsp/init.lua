@@ -10,7 +10,8 @@ local language_servers  = {
     "jsonls",
     "rust_analyzer",
     "gopls",
-    "pyright"
+    "pyright",
+    "bashls"
 }
 
 -- Core configurations
@@ -18,5 +19,5 @@ require("vinevim.lsp.installer").setup(language_servers)
 require("vinevim.lsp.configs").setup(language_servers)
 
 -- Extra plugins
-require("vinevim.lsp.signature")
+-- require("vinevim.lsp.signature")
 require("vinevim.lsp.null-ls")
