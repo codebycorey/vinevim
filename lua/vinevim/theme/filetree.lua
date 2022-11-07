@@ -6,29 +6,29 @@ end
 local icons = require("vinevim.theme.icons")
 
 
-vim.g.nvim_tree_group_empty = 1
+-- vim.g.nvim_tree_group_empty = 1
 -- vim.g.nvim_tree_git_hl = 1
 
 -- TODO: Consolidate with icons file
-vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
-  git = {
-    unstaged = "",
-    staged = "S",
-    unmerged = "",
-    renamed = "➜",
-    deleted = "",
-    untracked = "U",
-    ignored = "◌",
-  },
-  folder = {
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
-  },
+local tree_icons = {
+    default = "",
+    symlink = "",
+    git = {
+        unstaged = "",
+        staged = "S",
+        unmerged = "",
+        renamed = "➜",
+        deleted = "",
+        untracked = "U",
+        ignored = "◌",
+    },
+    folder = {
+        default = "",
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = "",
+    },
 }
 
 local parameters = {
@@ -47,6 +47,12 @@ local parameters = {
             error = icons.diagnostics.Error,
         },
     },
+    renderer = {
+        icons = {
+            glyphs = tree_icons,
+        },
+        group_empty = true,
+    }
 }
 nvim_tree.setup(parameters)
 

@@ -48,7 +48,7 @@ local get_capabilities = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
 
     if pcall(require, "cmp_nvim_lsp") then
-        capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+        capabilities = require("cmp_nvim_lsp").default_capabilities()
     end
     return capabilities
 end
@@ -79,38 +79,38 @@ end
 local disable_formatting = function(client)
     -- TODO: Make this easier to maintain
     if client.name == "tsserver" then
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end
 
     if client.name == "sumneko_lua" then
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end
 end
 
-local setup_highlighting = function(client)
-    -- TODO: Look into illuminate as alternative
-    -- TODO: Or use lua to create autocmd
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
-              augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-              augroup END
-            ]],
-            false
-        )
-    end
-end
+-- local setup_highlighting = function(client)
+--     -- TODO: Look into illuminate as alternative
+--     -- TODO: Or use lua to create autocmd
+--     if client.resolved_capabilities.document_highlight then
+--         vim.api.nvim_exec(
+--             [[
+--               augroup lsp_document_highlight
+--                 autocmd! * <buffer>
+--                 autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+--                 autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+--               augroup END
+--             ]],
+--             false
+--         )
+--     end
+-- end
 
 -- on_attach to LSP server
 local on_attach = function(client, bufnr)
     setup_keymaps(bufnr)
     disable_formatting(client)
-    setup_highlighting(client)
+    -- setup_highlighting(client)
 end
 
 local extend_config = function(server, base_config)

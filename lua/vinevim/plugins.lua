@@ -28,6 +28,7 @@ return packer.startup({
 
         -- Theme and Layout
         use("gruvbox-community/gruvbox")
+        use('folke/tokyonight.nvim')
         use("kyazdani42/nvim-web-devicons")
         use("nvim-lualine/lualine.nvim")
         use("akinsho/bufferline.nvim")
@@ -75,6 +76,7 @@ return packer.startup({
         use("lukas-reineke/indent-blankline.nvim")
         use("numToStr/Comment.nvim") -- Toggle comments
         use("akinsho/toggleterm.nvim")
+        use("mbbill/undotree")
         -- ADD TSXJSX Comments plugin
 
         -- Automatically set up your configuration after cloning packer.nvim

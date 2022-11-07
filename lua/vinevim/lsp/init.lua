@@ -11,7 +11,8 @@ local language_servers  = {
     "rust_analyzer",
     "gopls",
     "pyright",
-    "bashls"
+    "bashls",
+    "svelte"
 }
 
 -- Core configurations
