@@ -52,7 +52,7 @@ vim.opt.mouse = "a"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.guicursor = ""
+-- vim.opt.guicursor = ""
 
 vim.opt.shortmess:append("c")
 
