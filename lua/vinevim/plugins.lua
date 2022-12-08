@@ -35,8 +35,6 @@ return packer.startup({
         use("kyazdani42/nvim-web-devicons")
         use("nvim-lualine/lualine.nvim")
         use("akinsho/bufferline.nvim")
-        use("goolord/alpha-nvim")
-
         -- LSP
         use("neovim/nvim-lspconfig")
         use("williamboman/nvim-lsp-installer")

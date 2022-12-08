@@ -13,6 +13,7 @@ local language_servers = {
     "pyright",
     "bashls",
     "svelte",
+    "marksman",
 }
 
 local missing_installer_language_servers = {
