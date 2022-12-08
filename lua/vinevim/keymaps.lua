@@ -46,3 +46,5 @@ keymap("x", "<A-k>", ":move '.-2<CR>gv-gv")
 keymap("n", "<C-f>", ":!tmux neww tmux-session<CR>")
 
 keymap("n", "<leader><leader>s", "<Cmd>source %<CR>")
+
+keymap("n", "<leader>u", ":UndotreeShow<CR>")

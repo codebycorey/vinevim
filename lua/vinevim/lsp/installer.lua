@@ -1,24 +1,20 @@
 local M = {}
 
 M.setup = function(servers)
-    local lsp_installer_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-    if not lsp_installer_ok then
+    local mason_ok, mason = pcall(require, "mason")
+    local mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+
+    if not mason_ok or not mason_lspconfig_ok then
         return
     end
 
     local installer_settings = {
         automatic_installation = true,
         ensure_installed = servers,
-        ui = {
-            icons = {
-                server_installed = "✓",
-                server_pending = "➜",
-                server_uninstalled = "✗",
-            },
-        },
     }
 
-    lsp_installer.setup(installer_settings)
+    mason.setup()
+    mason_lspconfig.setup(installer_settings)
 end
 
 return M

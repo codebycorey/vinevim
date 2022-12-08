@@ -4,7 +4,7 @@ if not lsp_ok then
 end
 
 -- List of language servers to be installed and configured
-local language_servers  = {
+local language_servers = {
     "sumneko_lua",
     "tsserver",
     "jsonls",
@@ -12,12 +12,17 @@ local language_servers  = {
     "gopls",
     "pyright",
     "bashls",
-    "svelte"
+    "svelte",
+}
+
+local missing_installer_language_servers = {
+    -- "stylua",
 }
 
 -- Core configurations
 require("vinevim.lsp.installer").setup(language_servers)
 require("vinevim.lsp.configs").setup(language_servers)
+require("vinevim.lsp.configs").setup(missing_installer_language_servers)
 
 -- Extra plugins
 -- require("vinevim.lsp.signature")

@@ -27,8 +27,11 @@ return packer.startup({
         use("nvim-lua/plenary.nvim")
 
         -- Theme and Layout
+        -- colorschemes
         use("gruvbox-community/gruvbox")
-        use('folke/tokyonight.nvim')
+        use("folke/tokyonight.nvim")
+        use({ "catppuccin/nvim", as = "catppuccin" })
+
         use("kyazdani42/nvim-web-devicons")
         use("nvim-lualine/lualine.nvim")
         use("akinsho/bufferline.nvim")
@@ -40,6 +43,8 @@ return packer.startup({
         use("jose-elias-alvarez/null-ls.nvim")
         use("ray-x/lsp_signature.nvim")
         use("b0o/schemastore.nvim")
+        use("williamboman/mason.nvim")
+        use("williamboman/mason-lspconfig.nvim")
 
         -- CMP
         use("hrsh7th/nvim-cmp")
@@ -67,8 +72,8 @@ return packer.startup({
         use("kyazdani42/nvim-tree.lua")
 
         -- Git
-        use("tpope/vim-fugitive")
-        use("tpope/vim-rhubarb")
+        -- use("tpope/vim-fugitive")
+        -- use("tpope/vim-rhubarb")
 
         -- QOL
         -- use 'cohama/lexima.vim' -- Auto close pairs
@@ -77,7 +82,7 @@ return packer.startup({
         use("numToStr/Comment.nvim") -- Toggle comments
         use("akinsho/toggleterm.nvim")
         use("mbbill/undotree")
-        -- ADD TSXJSX Comments plugin
+        use("ThePrimeagen/harpoon")
 
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
