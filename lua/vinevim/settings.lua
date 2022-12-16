@@ -16,7 +16,7 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 
 -- Keep Buffers Open
-vim.opt.hidden = true
+-- vim.opt.hidden = true
 
 -- Turn off error bells
 vim.opt.errorbells = false
@@ -42,7 +42,7 @@ vim.opt.showmode = false
 --completeopt = { "menuone" "noselect" }, -- "noinsert"
 
 vim.opt.cmdheight = 1
-vim.opt.updatetime = 300 -- 50
+vim.opt.updatetime = 50 -- 50
 
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
@@ -55,4 +55,3 @@ vim.opt.splitright = true
 -- vim.opt.guicursor = ""
 
 vim.opt.shortmess:append("c")
-
