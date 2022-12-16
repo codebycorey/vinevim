@@ -1,6 +1,6 @@
 local packer_bootstrap = require("vinevim.packer.installer").setup()
 
--- Safely require packer 
+-- Safely require packer
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     return
@@ -17,16 +17,6 @@ return packer.startup({
         -- Util Plugins
         use("nvim-lua/popup.nvim")
         use("nvim-lua/plenary.nvim")
-
-        -- Theme and Layout
-        -- colorschemes
-        use("gruvbox-community/gruvbox")
-        use("folke/tokyonight.nvim")
-        use({ "catppuccin/nvim", as = "catppuccin" })
-
-        use("kyazdani42/nvim-web-devicons")
-        use("nvim-lualine/lualine.nvim")
-        use("akinsho/bufferline.nvim")
 
         -- LSP
         use({
@@ -69,8 +59,18 @@ return packer.startup({
         -- use("tpope/vim-fugitive")
         -- use("tpope/vim-rhubarb")
 
+        -- Theme and Layout
+        -- colorschemes
+        use("gruvbox-community/gruvbox")
+        use("folke/tokyonight.nvim")
+        use({ "catppuccin/nvim", as = "catppuccin" })
+        use("navarasu/onedark.nvim")
+
+        use("kyazdani42/nvim-web-devicons")
+        use("nvim-lualine/lualine.nvim")
+        use("akinsho/bufferline.nvim")
+
         -- QOL
-        -- use 'cohama/lexima.vim' -- Auto close pairs
         use("windwp/nvim-autopairs")
         use("lukas-reineke/indent-blankline.nvim")
         use("numToStr/Comment.nvim") -- Toggle comments
