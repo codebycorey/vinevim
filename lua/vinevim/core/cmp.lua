@@ -8,11 +8,6 @@ if not snip_ok then
     return
 end
 
-local tn_ok, tabnine = pcall(require, "cmp_tabnine.config")
-if not tn_ok then
-    return
-end
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local source_map = {

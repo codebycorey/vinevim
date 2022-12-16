@@ -54,26 +54,23 @@ local get_capabilities = function()
 end
 
 local setup_keymaps = function(bufnr)
-    local options = { noremap = true, silent = true }
-    local keymap = function(mode, lhs, rhs)
-        vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
-    end
+    local options = { buffer=bufnr, remap = false, silent = true }
 
-    keymap("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-    keymap("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
-    keymap("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
-    keymap("n", "gr", ":lua vim.lsp.buf.references()<CR>")
-    keymap("n", "K", ":lua vim.lsp.buf.hover()<CR>")
-    keymap("n", "<C-k>", ":lua vim.lsp.buf.signature_help()<CR>")
-    keymap("i", "<C-k>", ":lua vim.lsp.buf.signature_help()<CR>")
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, options)
+    vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, options)
+    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, options)
+    vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, options)
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, options)
+    vim.keymap.set("n", "<C-k>", function() vim.lsp.buf.signature_help() end, options)
+    vim.keymap.set("i", "<C-k>", function() vim.lsp.buf.signature_help() end, options)
 
-    keymap("n", "<leader>vrn", ":lua vim.lsp.buf.rename()<CR>")
-    keymap("n", "<leader>vca", ":lua vim.lsp.buf.code_action()<CR>")
+    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, options)
+    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, options)
 
-    keymap("n", "vd", ":lua vim.diagnostics.open_float()<CR>")
-    keymap("n", "[d", ":lua vim.diagnostic.goto_prev()<CR>")
-    keymap("n", "]d", ":lua vim.diagnostic.goto_next()<CR>")
-    keymap("n", "gl", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    vim.keymap.set("n", "vd", function() vim.diagnostics.open_float() end, options)
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, options)
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, options)
+    vim.keymap.set("n", "gl", function() vim.lsp.diagnostic.show_line_diagnostics() end, options)
 end
 
 local disable_formatting = function(client)
