@@ -46,15 +46,13 @@ M.git_branches = function()
     })
 end
 
-local keymap = require("vinevim.utils.keymap")
+vim.keymap.set("n", "<C-p>", '<Cmd>lua require("telescope.builtin").git_files()<CR>')
+vim.keymap.set("n", "<leader>pf", '<Cmd>lua require("telescope.builtin").find_files({ hidden = true })<CR>')
+vim.keymap.set("n", "<leader>pg", '<Cmd>lua require("telescope.builtin").live_grep()<CR>')
+vim.keymap.set("n", "<leader>pb", '<Cmd>lua require("telescope.builtin").buffers()<CR>')
+vim.keymap.set("n", "<leader>ph", '<Cmd>lua require("telescope.builtin").help_tags()<CR>')
 
-keymap("n", "<C-p>", '<Cmd>lua require("telescope.builtin").git_files()<CR>')
-keymap("n", "<leader>pf", '<Cmd>lua require("telescope.builtin").find_files({ hidden = true })<CR>')
-keymap("n", "<leader>pg", '<Cmd>lua require("telescope.builtin").live_grep()<CR>')
-keymap("n", "<leader>pb", '<Cmd>lua require("telescope.builtin").buffers()<CR>')
-keymap("n", "<leader>ph", '<Cmd>lua require("telescope.builtin").help_tags()<CR>')
-
-keymap("n", "<leader>gc", '<Cmd>lua require("vinevim.core.telescope").git_branches()<CR>')
-keymap("n", "<leader>so", '<Cmd>lua require("vinevim.core.telescope").reload_module()<CR>')
+vim.keymap.set("n", "<leader>gc", '<Cmd>lua require("vinevim.core.telescope").git_branches()<CR>')
+vim.keymap.set("n", "<leader>so", '<Cmd>lua require("vinevim.core.telescope").reload_module()<CR>')
 
 return M

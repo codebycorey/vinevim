@@ -16,6 +16,4 @@ function _LAZYGIT_TOGGLE()
     lazygit:toggle()
 end
 
-local keymap = require("vinevim.utils.keymap")
-
-keymap("n", "<leader>g", "<CMD>lua _LAZYGIT_TOGGLE()<CR>")
+vim.keymap.set("n", "<leader>g", "<CMD>lua _LAZYGIT_TOGGLE()<CR>")

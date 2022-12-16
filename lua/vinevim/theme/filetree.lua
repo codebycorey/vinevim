@@ -5,31 +5,12 @@ end
 
 local icons = require("vinevim.theme.icons")
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- vim.g.nvim_tree_group_empty = 1
 -- vim.g.nvim_tree_git_hl = 1
-
--- TODO: Consolidate with icons file
-local tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-        unstaged = "",
-        staged = "S",
-        unmerged = "",
-        renamed = "➜",
-        deleted = "",
-        untracked = "U",
-        ignored = "◌",
-    },
-    folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-    },
-}
 
 local parameters = {
     disable_netrw = true,
@@ -47,15 +28,35 @@ local parameters = {
             error = icons.diagnostics.Error,
         },
     },
+    git = {
+        ignore = false,
+    },
     renderer = {
         icons = {
-            glyphs = tree_icons,
+            glyphs = {
+                default = "",
+                symlink = "",
+                git = {
+                    unstaged = "",
+                    staged = "S",
+                    unmerged = "",
+                    renamed = "➜",
+                    deleted = "",
+                    untracked = "U",
+                    ignored = "◌",
+                },
+                folder = {
+                    default = "",
+                    open = "",
+                    empty = "",
+                    empty_open = "",
+                    symlink = "",
+                },
+            },
         },
         group_empty = true,
-    }
+    },
 }
 nvim_tree.setup(parameters)
 
-local keymap = require("vinevim.utils.keymap")
-
-keymap("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>e", "<Cmd>NvimTreeToggle<CR>")

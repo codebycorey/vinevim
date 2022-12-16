@@ -19,6 +19,4 @@ local options = {
 
 null_ls.setup(options)
 
-local keymap = require("vinevim.utils.keymap")
-
-keymap("n", "<leader>bf", "<Cmd>lua vim.lsp.buf.format({ async = true})<CR>")
+vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format({ async = true }))

@@ -1,7 +1,5 @@
-local keymap = require("vinevim.utils.keymap")
-
 -- Remap space as leader key
-keymap("", "<Space>", "<Nop>")
+vim.keymap.set("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -15,36 +13,34 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>")
-keymap("n", "<C-Down>", ":resize +2<CR>")
-keymap("n", "<C-Left>", ":vertical -2<CR>")
-keymap("n", "<C-Right>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-Left>", ":vertical -2<CR>")
+vim.keymap.set("n", "<C-Right>", ":resize +2<CR>")
 
 -- Navigate Buffers
-keymap("n", "<S-l>", ":bnext<CR>")
-keymap("n", "<S-h>", ":bprevious<CR>")
-keymap("n", "<leader>bq", "<Cmd>bp|bd #<CR>")
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Go to next buffer" })
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>bq", "<Cmd>bp|bd #<CR>", { desc = "Close buffer and switch to previous" })
 
 -- Jump Tmux session
-keymap("n", "<C-f>", "<Cmd>:silent !tmux neww tmux-session<CR>")
+vim.keymap.set("n", "<C-f>", "<Cmd>:silent !tmux neww tmux-session<CR>", { desc = "Switch tmux session" })
 
 -- Visual --
 -- Stay in indent mode
-keymap("v", "<", "<gv")
-keymap("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv", { desc = "Indent and keep active select" })
+vim.keymap.set("v", ">", ">gv", { desc = "Remove Indent and keep active select" })
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==")
-keymap("v", "<A-k>", ":m .-2<CR>==")
-keymap("v", "p", '"_dP')
+vim.keymap.set("v", "<A-j>", ":m .+1<CR>==")
+vim.keymap.set("v", "<A-k>", ":m .-2<CR>==")
+vim.keymap.set("v", "p", '"_dP')
 
 -- Visual Block --
 -- Move text up and down
-keymap("x", "<A-j>", ":move '>.+1<CR>gv-gv")
-keymap("x", "<A-k>", ":move '.-2<CR>gv-gv")
+vim.keymap.set("x", "<A-j>", ":move '>.+1<CR>gv-gv")
+vim.keymap.set("x", "<A-k>", ":move '.-2<CR>gv-gv")
 
-keymap("n", "<C-f>", ":!tmux neww tmux-session<CR>")
+vim.keymap.set("n", "<leader><leader>s", "<Cmd>source %<CR>", { desc = "Source current file" })
 
-keymap("n", "<leader><leader>s", "<Cmd>source %<CR>")
-
-keymap("n", "<leader>u", ":UndotreeShow<CR>")
+vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>", { desc = "Open Undotree" })
