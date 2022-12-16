@@ -1,6 +1,6 @@
-local packer_bootstrap = require("vinevim.packer").bootstrap()
+local packer_bootstrap = require("vinevim.packer.installer").setup()
 
--- Safely require packer
+-- Safely require packer 
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     return

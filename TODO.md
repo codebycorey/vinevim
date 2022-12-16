@@ -1,0 +1,3 @@
+- Whichkey
+- Switch to vim-fugative for git
+- go throug keymaps again with some nice to haves

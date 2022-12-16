@@ -13,8 +13,6 @@ if not schemas_ok then
     return {}
 end
 
-print("Hello World")
-
 lsp.preset("recommended")
 
 -- List of language servers to be installed and configured
