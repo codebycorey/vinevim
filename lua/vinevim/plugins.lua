@@ -56,8 +56,8 @@ return packer.startup({
         use("kyazdani42/nvim-tree.lua")
 
         -- Git
-        -- use("tpope/vim-fugitive")
-        -- use("tpope/vim-rhubarb")
+        use("tpope/vim-fugitive")
+        use("tpope/vim-rhubarb")
 
         -- Theme and Layout
         -- colorschemes

@@ -36,6 +36,15 @@ local parameters = {
         },
         group_empty = true,
     },
+    view = {
+        mappings = {
+            list = {
+                { key = "<C-e>", action = "" },
+                { key = "e", action = "" },
+                { key = "r", action = "full_rename" },
+            },
+        },
+    },
 }
 nvim_tree.setup(parameters)
 
