@@ -12,11 +12,6 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal --
--- Resize with arrows
-vim.keymap.set("n", "<C-Up>", ":resize -2<CR>")
-vim.keymap.set("n", "<C-Down>", ":resize +2<CR>")
-vim.keymap.set("n", "<C-Left>", ":vertical -2<CR>")
-vim.keymap.set("n", "<C-Right>", ":resize +2<CR>")
 
 -- Navigate Buffers
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Go to next buffer" })
@@ -43,4 +38,14 @@ vim.keymap.set("x", "<A-k>", ":move '.-2<CR>gv-gv")
 
 vim.keymap.set("n", "<leader><leader>s", "<Cmd>source %<CR>", { desc = "Source current file" })
 
-vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>", { desc = "Open Undotree" })
+--
+-- Pane management
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" })
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "make split windows equal width & height" })
+vim.keymap.set("n", "<leader>q", ":close<CR>", { desc = "close current split window" })
+-- Resize with arrows
+vim.keymap.set("n", "<leader><Up>", ":resize -10<CR>", { desc = "resize window up" })
+vim.keymap.set("n", "<leader><Down>", ":resize +10<CR>", { desc = "resize window down" })
+vim.keymap.set("n", "<leader><Left>", ":vertical resize +10<CR>", { desc = "resize window left" })
+vim.keymap.set("n", "<leader><Right>", ":vertical resize -10<CR>", { desc = "resize window right" })
