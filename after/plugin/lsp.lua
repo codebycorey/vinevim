@@ -8,8 +8,8 @@ if not cmp_ok then
     return
 end
 
-local schemas_ok, schemastore = pcall(require, "schemastore")
-if not schemas_ok then
+local ts_ok = pcall(require, "telescope")
+if not ts_ok then
     return
 end
 
@@ -30,7 +30,6 @@ local language_servers = {
 
 lsp.ensure_installed(language_servers)
 
-
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_replace = { behavior = cmp.SelectBehavior.Replace, select = false }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -49,47 +48,54 @@ lsp.setup_nvim_cmp({
     mapping = cmp_mappings,
 })
 
+local telescope = require("telescope.builtin")
 local lsp_keymaps = {
-    { lhs = "gd", rhs = vim.lsp.buf.definition, desc = "[G]o to [D]efinition" },
-    { lhs = "gD", rhs = vim.lsp.buf.declaration, desc = "[G]o to [D]eclaration" },
-    { lhs = "gi", rhs = vim.lsp.buf.implementation, desc = "[G]o to [I]mplementation" },
-    { lhs = "gr", rhs = vim.lsp.buf.references, desc = "[G]o to [R]eferences" },
-    { lhs = "K", rhs = vim.lsp.buf.hover, desc = "Open floating buffer information" },
-    { lhs = "gl", rhs = vim.diagnostic.open_float, desc = "Open floating diagnostic information" },
+    { lhs = "gd", rhs = vim.lsp.buf.definition, desc = "[G]oto [D]efinition" },
+    { lhs = "gD", rhs = vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
+    { lhs = "gi", rhs = vim.lsp.buf.implementation, desc = "[G]oto [I]mplementation" },
     {
-        lhs = "<leader>lf",
+        lhs = "gr",
+        rhs = function()
+            telescope.lsp_references()
+        end,
+        desc = "[G]oto [R]eferences",
+    },
+    { lhs = "K", rhs = vim.lsp.buf.hover, desc = "Hover Documentation" },
+    { lhs = "gl", rhs = vim.diagnostic.open_float, desc = "Float diagnostic information" },
+    {
+        lhs = "<leader>bf",
         rhs = function()
             vim.lsp.buf.format({ async = true })
         end,
-        desc = "[L]sp [F]ormat",
+        desc = "[B]uffer [F]ormat",
     },
     {
         lhs = "<leader>li",
         rhs = function()
             vim.cmd("LspInfo")
         end,
-        desc = "[L]sp [I]nformation",
+        desc = "[I]nformation",
     },
     {
         lhs = "<leader>lI",
         rhs = function()
             vim.cmd("LspInstallInfo")
         end,
-        desc = "[L]sp [I]nstall information",
+        desc = "[I]nstall information",
     },
-    { lhs = "<leader>la", rhs = vim.lsp.buf.code_action, desc = "[L]sp C]ode action" },
-    { lhs = "[d", rhs = vim.diagnostic.goto_prev, desc = "Go to previous [D]iagnostic" },
-    { lhs = "]d", rhs = vim.diagnostic.goto_next, desc = "Go to next [D]iagnostic" },
+    { lhs = "<leader>ca", rhs = vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
+    { lhs = "[d", rhs = vim.diagnostic.goto_prev, desc = "Goto previous [D]iagnostic" },
+    { lhs = "]d", rhs = vim.diagnostic.goto_next, desc = "Goto next [D]iagnostic" },
 }
 
 local on_attach = function(client, bufnr)
-    local options = { buffer = bufnr, remap = false, silent = true }
+    local lsp_keymap_set = function(lhs, rhs, desc)
+        local options = { buffer = bufnr, remap = false, silent = true, desc = "Lsp: " .. desc }
+        vim.keymap.set("n", lhs, rhs, options)
+    end
 
     for _, keymap in ipairs(lsp_keymaps) do
-        local opts = vim.tbl_deep_extend("force", options, {
-            desc = keymap.desc,
-        })
-        vim.keymap.set("n", keymap.lhs, keymap.rhs, opts)
+        lsp_keymap_set(keymap.lhs, keymap.rhs, keymap.desc)
     end
 
     -- Disable formatting
@@ -137,8 +143,6 @@ vim.diagnostic.config({
     update_in_insert = false,
     underline = true,
     severity_sort = false,
-    float = true,
 })
-
 
 lsp.setup()

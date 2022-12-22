@@ -46,13 +46,17 @@ M.git_branches = function()
     })
 end
 
-vim.keymap.set("n", "<C-p>", builtin.git_files)
-vim.keymap.set("n", "<leader>pf", function()
+vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
+vim.keymap.set("n", "<leader>sg", builtin.git_files, { desc = "[S]earch [G]it files" })
+vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
+vim.keymap.set("n", "<leader>sf", function()
     builtin.find_files({ hidden = true })
-end)
-vim.keymap.set("n", "<leader>pg", builtin.live_grep)
-vim.keymap.set("n", "<leader>pb", builtin.buffers)
-vim.keymap.set("n", "<leader>ph", builtin.help_tags)
+end, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
+vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+
+vim.keymap.set("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[/] Fuzzy search current buffer" })
 
 -- vim.keymap.set("n", "<leader>gc", '<Cmd>lua require("vinevim.core.telescope").git_branches()<CR>')
 -- vim.keymap.set("n", "<leader>so", '<Cmd>lua require("vinevim.core.telescope").reload_module()<CR>')

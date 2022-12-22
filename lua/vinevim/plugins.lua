@@ -65,10 +65,12 @@ return packer.startup({
         use("folke/tokyonight.nvim")
         use({ "catppuccin/nvim", as = "catppuccin" })
         use("navarasu/onedark.nvim")
+        use("rebelot/kanagawa.nvim")
 
         use("kyazdani42/nvim-web-devicons")
         use("nvim-lualine/lualine.nvim")
         use("akinsho/bufferline.nvim")
+        use("goolord/alpha-nvim")
 
         -- QOL
         use("windwp/nvim-autopairs")

@@ -16,4 +16,4 @@ function _LAZYGIT_TOGGLE()
     lazygit:toggle()
 end
 
-vim.keymap.set("n", "<leader>g", "<CMD>lua _LAZYGIT_TOGGLE()<CR>")
+vim.keymap.set("n", "<leader>g", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Open [G]it"})
