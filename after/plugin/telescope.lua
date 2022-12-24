@@ -47,7 +47,7 @@ M.git_branches = function()
 end
 
 vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
-vim.keymap.set("n", "<leader>sg", builtin.git_files, { desc = "[S]earch [G]it files" })
+vim.keymap.set("n", "<leader>sp", builtin.git_files, { desc = "[S]earch [G]it files" })
 vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
 vim.keymap.set("n", "<leader>sf", function()
     builtin.find_files({ hidden = true })

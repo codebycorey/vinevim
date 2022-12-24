@@ -32,7 +32,18 @@ lsp.ensure_installed(language_servers)
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_replace = { behavior = cmp.SelectBehavior.Replace, select = false }
-local cmp_mappings = lsp.defaults.cmp_mappings({
+-- local cmp_mappings = lsp.defaults.cmp_mappings({
+--     ["<Down>"] = cmp.mapping.select_next_item(cmp_select),
+--     ["<Up>"] = cmp.mapping.select_prev_item(cmp_select),
+--     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+--     ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+--     ["<C-Space>"] = cmp.mapping.complete(),
+--     ["<C-y>"] = cmp.mapping.confirm(cmp_replace),
+--     ["<CR>"] = cmp.mapping.confirm(cmp_replace),
+--     ["<Tab>"] = nil,
+--     ["<S-Tab>"] = nil,
+-- })
+local cmp_mappings = {
     ["<Down>"] = cmp.mapping.select_next_item(cmp_select),
     ["<Up>"] = cmp.mapping.select_prev_item(cmp_select),
     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
@@ -42,7 +53,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<CR>"] = cmp.mapping.confirm(cmp_replace),
     ["<Tab>"] = nil,
     ["<S-Tab>"] = nil,
-})
+}
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings,
@@ -137,12 +148,12 @@ lsp.set_preferences({
     },
 })
 
+lsp.setup()
+
+-- Must be after lsp.setup()
 vim.diagnostic.config({
     virtual_text = true,
-    signs = true,
-    update_in_insert = false,
+    update_in_insert = true,
     underline = true,
-    severity_sort = false,
+    severity_sort = true,
 })
-
-lsp.setup()
