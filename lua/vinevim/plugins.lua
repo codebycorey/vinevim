@@ -79,6 +79,7 @@ return packer.startup({
         use("akinsho/toggleterm.nvim")
         use("mbbill/undotree")
         use("ThePrimeagen/harpoon")
+        use("folke/zen-mode.nvim")
 
         -- Misc
         use("epwalsh/obsidian.nvim")
