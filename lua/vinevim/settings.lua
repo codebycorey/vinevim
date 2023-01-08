@@ -38,7 +38,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.showmode = false
 
 vim.opt.cmdheight = 1
-vim.opt.updatetime = 50 -- 50
+vim.opt.updatetime = 50
 
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
@@ -49,3 +49,9 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.shortmess:append("c")
+
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- vim.g.netrw_liststyle=3
