@@ -3,10 +3,6 @@ if not tree_ok then
     return
 end
 
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local parameters = {
     disable_netrw = true,
     update_focused_file = {
@@ -30,9 +26,11 @@ local parameters = {
         highlight_git = true,
         icons = {
             show = {
-                folder = false,
                 git = false,
             },
+        },
+        indent_markers = {
+            enable = true,
         },
         group_empty = true,
     },
