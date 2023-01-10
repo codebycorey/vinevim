@@ -53,8 +53,7 @@ return packer.startup({
         use("nvim-treesitter/playground")
 
         -- File Tree
-        use("kyazdani42/nvim-tree.lua")
-
+        use("nvim-tree/nvim-tree.lua")
         -- Git
         use("tpope/vim-fugitive")
         use("tpope/vim-rhubarb")
@@ -80,6 +79,7 @@ return packer.startup({
         use("mbbill/undotree")
         use("ThePrimeagen/harpoon")
         use("folke/zen-mode.nvim")
+        use("folke/which-key.nvim")
 
         -- Misc
         use("epwalsh/obsidian.nvim")
