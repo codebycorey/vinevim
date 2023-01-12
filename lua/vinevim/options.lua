@@ -1,3 +1,7 @@
+-- setup leader key early 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Line Numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
