@@ -13,7 +13,6 @@ return {
             [[  \/__/    \/_/\/_/\/_/\/____/ \/__/    \/_/\/_/\/_/\/_/]],
         }
         dashboard.section.buttons.val = {
-
             dashboard.button("<leader>sf", "[S]earch [F]iles"),
             dashboard.button("<leader>sp", "[S]earch git [P]roject files"),
             dashboard.button("<leader>sg", "[S]earch by [G]rep"),

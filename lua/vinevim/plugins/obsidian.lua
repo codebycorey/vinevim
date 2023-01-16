@@ -1,6 +1,6 @@
 return {
     "epwalsh/obsidian.nvim",
-    event = "VeryLazy",
+    cmd = 'ObsidianFollowLink',
     opts = {
         dir = "~/personal/forest/",
         completion = {

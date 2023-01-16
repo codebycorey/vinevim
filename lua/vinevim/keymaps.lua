@@ -1,16 +1,6 @@
 -- Remap space as leader key
 vim.keymap.set("", "<Space>", "<Nop>")
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
--- Normal --
-
 -- Navigate Buffers
 vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Go to previous buffer" })
