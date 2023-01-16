@@ -5,64 +5,38 @@ local lsp_group = augroup("Lsp", {})
 
 return {
     {
-        "VonHeikemen/lsp-zero.nvim",
-        event = "VeryLazy",
+        "neovim/nvim-lspconfig",
+        event = "BufReadPre",
         dependencies = {
-            -- LSP
-            { "neovim/nvim-lspconfig" },
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
-
-            -- CMP
-            { "hrsh7th/nvim-cmp" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
 
             -- Snippets
             { "L3MON4D3/LuaSnip" },
             { "rafamadriz/friendly-snippets" },
+            -- Misc
             {
                 "nvim-telescope/telescope.nvim",
             },
             { "b0o/SchemaStore.nvim" },
         },
         config = function()
-            local lsp = require("lsp-zero")
-            lsp.preset("recommended")
-
             -- List of language servers to be installed and configured
-            local language_servers = {
-                "sumneko_lua",
-                "tsserver",
-                "jsonls",
-                "rust_analyzer",
-                "gopls",
-                "pyright",
-                "bashls",
-                "svelte",
-                "marksman",
+            local opts = {
+                ensure_installed = {
+                    sumneko_lua = require("vinevim.lsp-settings.sumneko_lua"),
+                    tsserver = {},
+                    jsonls = require("vinevim.lsp-settings.jsonls"),
+                    rust_analyzer = {},
+                    gopls = {},
+                    pyright = require("vinevim.lsp-settings.pyright"),
+                    bashls = {},
+                    svelte = {},
+                    marksman = {},
+                },
+                automatic_installation = true,
             }
-            lsp.ensure_installed(language_servers)
-
-            local cmp = require("cmp")
-            local cmp_select = { behavior = cmp.SelectBehavior.Select }
-            local cmp_replace = { behavior = cmp.SelectBehavior.Replace, select = false }
-            local cmp_mappings = {
-                ["<Down>"] = cmp.mapping.select_next_item(cmp_select),
-                ["<Up>"] = cmp.mapping.select_prev_item(cmp_select),
-                ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-                ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<C-y>"] = cmp.mapping.confirm(cmp_replace),
-                ["<CR>"] = cmp.mapping.confirm(cmp_replace),
-            }
-
-            lsp.setup_nvim_cmp({
-                mapping = cmp_mappings,
-            })
 
             local on_attach = function(client, bufnr)
                 local lsp_keymap_set = function(lhs, rhs, override_opts)
@@ -87,9 +61,6 @@ return {
                 lsp_keymap_set("<leader>li", function()
                     vim.cmd("LspInfo")
                 end, { desc = "[I]nformation" })
-                lsp_keymap_set("<leader>lI", function()
-                    vim.cmd("LspInstallInfo")
-                end, { desc = "[I]nstall information" })
                 lsp_keymap_set("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
                 lsp_keymap_set("[d", vim.diagnostic.goto_prev, { desc = "Goto previous [D]iagnostic" })
                 lsp_keymap_set("]d", vim.diagnostic.goto_next, { desc = "Goto next [D]iagnostic" })
@@ -123,36 +94,39 @@ return {
                 end
             end
 
-            lsp.on_attach(on_attach)
+            local nvim_capabilities = vim.lsp.protocol.make_client_capabilities()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities(nvim_capabilities)
 
-            for _, lsp_name in ipairs(language_servers) do
-                pcall(function()
-                    local lsp_config = require("vinevim.lsp-configs." .. lsp_name)
-                    lsp.configure(lsp_name, lsp_config)
-                end)
+            require("mason-lspconfig").setup(opts)
+
+            local get_servers = require("mason-lspconfig").get_installed_servers
+
+            for _, server_name in ipairs(get_servers()) do
+                local lsp_options = opts.ensure_installed[server_name] or {}
+                lsp_options.capabilities = capabilities
+                lsp_options.on_attach = on_attach
+                require("lspconfig")[server_name].setup(lsp_options)
             end
 
-            lsp.set_preferences({
-                suggest_lsp_servers = false,
-                sign_icons = {
-                    error = "E",
-                    warn = "W",
-                    hint = "H",
-                    info = "I",
-                },
-            })
-
-            lsp.setup()
-
-            -- Must be after lsp.setup()
             vim.diagnostic.config({
                 virtual_text = true,
                 update_in_insert = true,
                 underline = true,
                 severity_sort = true,
             })
-
-            local setup_highlighting = function(client) end
+        end,
+    },
+    {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        keys = { { "<leader>cm", vim.cmd.Mason, desc = "Mason" } },
+        opts = {
+            ensure_installed = {
+                "spellcheck",
+            },
+        },
+        config = function(_, opts)
+            require("mason").setup(opts)
         end,
     },
 }
