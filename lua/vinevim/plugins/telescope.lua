@@ -63,6 +63,21 @@ return {
     opts = {
         defaults = {
             prompt_prefix = " > ",
+            selection_caret = "  ",
+            sorting_strategy = "ascending",
+            layout_config = {
+                horizontal = {
+                    prompt_position = "top",
+                    preview_width = 0.55,
+                    results_width = 0.8,
+                },
+                width = 0.87,
+                height = 0.80,
+                preview_cutoff = 120,
+            },
+            winblend = 0,
+            border = {},
+            color_devicons = true,
         },
         extensions = {
             fzf = {
@@ -76,50 +91,28 @@ return {
     config = function(_, opts)
         require("telescope").setup(opts)
         require("telescope").load_extension("fzf")
+
+        local palette = require("vinevim.theme")
+
+        -- local TelescopeColor = {
+        --     TelescopeMatching = { fg = palette.oniViolet },
+        --     TelescopeSelection = { bg = palette.sumiInk2 },
+        --
+        --     TelescopeResultsNormal = { bg = palette.sumiInk0 },
+        --     TelescopeResultsTitle = { bg = palette.sumiInk0, fg = palette.sumiInk0 },
+        --
+        --     TelescopePromptBorder = { bg = palette.sumiInk2, fg = palette.sumiInk2 },
+        --     TelescopePromptNormal = { bg = palette.sumiInk2 },
+        --     TelescopePromptPrefix = { fg = palette.waveRed, bg = palette.sumiInk2 },
+        --     TelescopePromptTitle = { bg = palette.waveRed, fg = palette.sumniInk0 },
+        --
+        --     TelescopeResultsBorder = { bg = palette.sumiInk0, fg = palette.sumiInk0 },
+        --     TelescopePreviewBorder = { bg = palette.sumiInk0, fg = palette.sumiInk0 },
+        --     TelescopePreviewNormal = { bg = palette.sumiInk0 },
+        --     TelescopePreviewTitle = { bg = palette.waveAqua2, fg = palette.sumniInk0 },
+        -- }
+        -- for hl, col in pairs(TelescopeColor) do
+        --     vim.api.nvim_set_hl(0, hl, col)
+        -- end
     end,
 }
-
---
--- telescope.setup({
---     defaults = {
---         prompt_prefix = " > ",
---     },
---     extensions = {
---         fzf = {
---             fuzzy = true, -- false will only do exact matching
---             override_generic_sorter = true, -- override the generic sorter
---             override_file_sorter = true, -- override the file sorter
---             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
---         },
---     },
--- })
---
--- telescope.load_extension("fzf")
---
--- M.reload_module = function()
---     local lua_dirs = vim.fn.glob("./lua/**/*", 0, 1)
---     for _, dir in ipairs(lua_dirs) do
---         dir = string.gsub(dir, "./lua/", "")
---         dir = dir:gsub("%.lua", "")
---         dir = dir:gsub("%/", ".")
---         dir = dir:gsub("%.init", "")
---         pcall(R, dir)
---     end
--- end
---
--- M.git_branches = function()
---     require("telescope.builtin").git_branches({
---         attach_mappings = function(_, map)
---             map("i", "<c-d>", actions.git_delete_branch)
---             map("n", "<c-d>", actions.git_delete_branch)
---             return true
---         end,
---     })
--- end
---
---
--- -- vim.keymap.set("n", "<leader>gc", '<Cmd>lua require("vinevim.core.telescope").git_branches()<CR>')
--- -- vim.keymap.set("n", "<leader>so", '<Cmd>lua require("vinevim.core.telescope").reload_module()<CR>')
---
--- return M
---

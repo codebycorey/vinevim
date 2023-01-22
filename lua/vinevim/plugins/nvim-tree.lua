@@ -1,5 +1,6 @@
 return {
     "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
         disable_netrw = true,
         update_focused_file = {
@@ -42,6 +43,12 @@ return {
         },
     },
     keys = {
-        { "<leader>e", function() vim.cmd.NvimTreeToggle() end, desc = "Toggle Nvim Tree" },
-    }
+        {
+            "<leader>e",
+            function()
+                vim.cmd.NvimTreeToggle()
+            end,
+            desc = "Toggle Nvim Tree",
+        },
+    },
 }

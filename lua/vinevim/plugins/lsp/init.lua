@@ -7,9 +7,6 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
             { "hrsh7th/cmp-nvim-lsp" },
 
-            -- Snippets
-            { "L3MON4D3/LuaSnip" },
-            { "rafamadriz/friendly-snippets" },
             -- Misc
             {
                 "nvim-telescope/telescope.nvim",
@@ -102,4 +99,7 @@ return {
             })
         end,
     },
+    {
+        -- "lsp_signature",
+    }
 }

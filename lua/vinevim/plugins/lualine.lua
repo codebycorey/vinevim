@@ -8,8 +8,4 @@ return {
             theme = "auto",
         },
     },
-    config = function(_, opts)
-        print("Hello!!")
-        require("lualine").setup(opts)
-    end,
 }
