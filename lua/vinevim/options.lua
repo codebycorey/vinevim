@@ -47,6 +47,8 @@ vim.opt.updatetime = 50
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.completeopt = "menu,menuone,noselect"
+
 vim.opt.mouse = "a"
 
 vim.opt.splitbelow = true
