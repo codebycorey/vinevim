@@ -7,6 +7,9 @@ and to always have something to tinker with.
 
 <img width="1900" alt="Vinevim completion screenshot" src="https://user-images.githubusercontent.com/10536895/215016647-f59f1e19-613f-4e11-a4b3-f752fe67a973.png">
 
+<img width="1900" alt="Vinevim telescope screenshot" src="https://user-images.githubusercontent.com/10536895/215203095-f1e2ca90-5afe-4417-a65d-9a4b9bab1ba7.png">
+
+
 ## Installation
 
 1. Install Neovim on your machine.
