@@ -32,12 +32,12 @@ local alpha_group = augroup("alpha", {})
 
 return {
     "goolord/alpha-nvim",
-    event = "VimEnter",
+    -- event = "VimEnter",
     config = function()
         local alpha = require("alpha")
         local dashboard = require("alpha.themes.dashboard")
 
-        dashboard.section.header.val = headers.ANSI_SHADOW_VINEVIM
+        dashboard.section.header.val = headers.ANSI_SHADOW_NEOVIM
         dashboard.section.buttons.val = {
             dashboard.button("<leader>sf", "[S]earch [F]iles"),
             dashboard.button("<leader>sp", "[S]earch git [P]roject files"),

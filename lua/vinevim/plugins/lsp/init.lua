@@ -65,7 +65,7 @@ return {
             dependencies = { "williamboman/mason.nvim" },
             opts = {
                 ensure_installed = {
-                    "sumneko_lua",
+                    "lua_ls",
                     "jsonls",
                     "pyright",
                     "tsserver",

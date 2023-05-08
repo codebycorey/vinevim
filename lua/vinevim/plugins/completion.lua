@@ -12,16 +12,16 @@ return {
             delete_check_events = "TextChanged",
         },
         keys = {
-            {
-                "<S-Tab>",
-                mode = { "i", "s" },
-                function()
-                    if require("luasnip").jumpable(-1) then
-                        require("luasnip").jump(-1)
-                    end
-                end,
-                silent = true,
-            },
+            -- {
+            --     "<S-Tab>",
+            --     mode = { "i", "s" },
+            --     function()
+            --         if require("luasnip").jumpable(-1) then
+            --             require("luasnip").jump(-1)
+            --         end
+            --     end,
+            --     silent = true,
+            -- },
             --Next snippet region
             -- {
             --     "<Tab>",
@@ -35,15 +35,15 @@ return {
             --     end,
             --     silent = true,
             -- },
-            {
-                "<tab>",
-                mode = { "i", "s" },
-                function()
-                    return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-                end,
-                expr = true,
-                silent = true,
-            },
+            -- {
+            --     "<tab>",
+            --     mode = { "i", "s" },
+            --     function()
+            --         return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+            --     end,
+            --     expr = true,
+            --     silent = true,
+            -- },
         },
     },
     {
