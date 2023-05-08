@@ -1,7 +1,6 @@
 return {
     "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
+    dependencies = { "nvim-tree/nvim-web-devicons" }, opts = {
         disable_netrw = true,
         update_focused_file = {
             enable = true,
@@ -32,15 +31,22 @@ return {
             },
             group_empty = true,
         },
-        view = {
-            mappings = {
-                list = {
-                    { key = "<C-e>", action = "" },
-                    { key = "e", action = "" },
-                    { key = "r", action = "full_rename" },
-                },
-            },
-        },
+        on_attach = function(bufnr)
+            local api = require('nvim-tree.api')
+            local function opts(desc)
+                print("nvim-tree: " .. desc)
+                return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+            end
+
+            api.config.mappings.default_on_attach(bufnr)
+
+            vim.keymap.set("n", "r", api.fs.rename, opts("Rename"))
+            vim.keymap.set("n", "<C-e>", '', { buffer = bufnr });
+            vim.keymap.del("n", "<C-e>", { buffer = bufnr });
+            vim.keymap.set("n", "e", '', { buffer = bufnr });
+            vim.keymap.del("n", "e", { buffer = bufnr });
+
+        end,
     },
     keys = {
         {
