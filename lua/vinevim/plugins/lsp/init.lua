@@ -60,23 +60,21 @@ return {
         end,
     },
     {
-        {
-            "williamboman/mason-lspconfig.nvim",
-            dependencies = { "williamboman/mason.nvim" },
-            opts = {
-                ensure_installed = {
-                    "lua_ls",
-                    "jsonls",
-                    "pyright",
-                    "tsserver",
-                    "rust_analyzer",
-                    "gopls",
-                    "bashls",
-                    "svelte",
-                    "marksman",
-                },
-                automatic_installation = true,
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim" },
+        opts = {
+            ensure_installed = {
+                "lua_ls",
+                "jsonls",
+                "pyright",
+                "tsserver",
+                "rust_analyzer",
+                "gopls",
+                "bashls",
+                "svelte",
+                "marksman",
             },
+            automatic_installation = true,
         },
     },
     {
@@ -101,5 +99,5 @@ return {
     },
     {
         -- "lsp_signature",
-    }
+    },
 }

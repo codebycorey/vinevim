@@ -49,12 +49,12 @@ return {
         end,
     },
     keys = {
-        {
-            "<leader>e",
-            function()
-                vim.cmd.NvimTreeToggle()
-            end,
-            desc = "Toggle Nvim Tree",
-        },
+        -- {
+        --     "<leader>e",
+        --     function()
+        --         vim.cmd.NvimTreeToggle()
+        --     end,
+        --     desc = "Toggle Nvim Tree",
+        -- },
     },
 }

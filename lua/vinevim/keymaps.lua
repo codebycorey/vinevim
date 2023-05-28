@@ -7,7 +7,7 @@ vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Go to previous buffer" 
 vim.keymap.set("n", "<leader><leader>q", "<Cmd>bp|bd #<CR>", { desc = "Close buffer and switch to previous" })
 
 -- Jump Tmux session
-vim.keymap.set("n", "<C-f>", "<Cmd>:silent !tmux neww tmux-session<CR>", { desc = "Switch tmux session" })
+vim.keymap.set("n", "<C-f>", "<Cmd>:silent !tmux neww tmux-manager<CR>", { desc = "Switch tmux session" })
 
 -- Visual --
 -- Stay in indent mode

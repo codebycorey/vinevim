@@ -87,6 +87,11 @@ return {
                 case_mode = "smart_case", -- or "ignore_case" or "respect_case"
             },
         },
+        pickers = {
+            live_grep = {
+                additional_args = { "--hidden" },
+            },
+        },
     },
     config = function(_, opts)
         require("telescope").setup(opts)

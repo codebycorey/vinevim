@@ -12,38 +12,37 @@ return {
             delete_check_events = "TextChanged",
         },
         keys = {
-            -- {
-            --     "<S-Tab>",
-            --     mode = { "i", "s" },
-            --     function()
-            --         if require("luasnip").jumpable(-1) then
-            --             require("luasnip").jump(-1)
-            --         end
-            --     end,
-            --     silent = true,
-            -- },
-            --Next snippet region
-            -- {
-            --     "<Tab>",
-            --     mode = { "i", "s" },
-            --     function()
-            --         if require("luasnip").jumpable(1) then
-            --             require("luasnip").jump(1)
-            --         else
-            --             return "<tab>"
-            --         end
-            --     end,
-            --     silent = true,
-            -- },
-            -- {
-            --     "<tab>",
-            --     mode = { "i", "s" },
-            --     function()
-            --         return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-            --     end,
-            --     expr = true,
-            --     silent = true,
-            -- },
+            {
+                "<S-Tab>",
+                mode = { "i", "s" },
+                function()
+                    if require("luasnip").jumpable(-1) then
+                        require("luasnip").jump(-1)
+                    end
+                end,
+                silent = true,
+            },
+            {
+                "<Tab>",
+                mode = "i",
+                function()
+                    if require("luasnip").jumpable(1) then
+                        require("luasnip").jump(1)
+                    else
+                        return "<tab>"
+                    end
+                end,
+                expr = true,
+                silent = true,
+            },
+            {
+                "<tab>",
+                mode = "s",
+                function()
+                    return require("luasnip").jump(1)
+                end,
+                silent = true,
+            },
         },
     },
     {
@@ -102,5 +101,11 @@ return {
             }
             cmp.setup(options)
         end,
+    },
+    {
+        "github/copilot.vim",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        lazy = false,
     },
 }

@@ -2,9 +2,13 @@ return {
     { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
     {
         "nvim-treesitter/nvim-treesitter",
-        event = "BufReadPost",
+        dependencies = {
+            "JoosepAlviste/nvim-ts-context-commentstring",
+        },
+        event = { "BufReadPost", "BufNewFile" },
         build = ":TSUpdate",
         opts = {
+            auto_install = true,
             highlight = {
                 enable = true,
                 additional_vim_regex_highlight = true,
@@ -12,15 +16,45 @@ return {
             indent = {
                 enable = true,
             },
-            autopairs = {
-                enable = true,
-            },
-            sync_install = false,
             playground = {
                 enable = true,
             },
-            ensure_installed = "all",
+            ensure_installed = {
+                "bash",
+                "html",
+                "javascript",
+                "json",
+                "lua",
+                "luadoc",
+                "luap",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "query",
+                "regex",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "yaml",
+            },
             ignore_install = {},
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<C-space>",
+                    node_incremental = "<C-space>",
+                    scope_incremental = false,
+                    node_decremental = "<bs>",
+                },
+            },
+            context_commentstring = {
+                enable = true,
+            },
+        },
+        keys = {
+            { "<c-space>", desc = "Increment selection" },
+            { "<bs>", desc = "Decrement selection", mode = "x" },
         },
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
