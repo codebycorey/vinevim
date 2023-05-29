@@ -101,10 +101,33 @@ return {
     },
     {
         "echasnovski/mini.bufremove",
-        -- stylua: ignore
         keys = {
-            { "<leader>bd", function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-            { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
+            {
+                "<leader>bd",
+                function()
+                    require("mini.bufremove").delete(0, false)
+                end,
+                desc = "Delete Buffer",
+            },
+            {
+                "<leader>bD",
+                function()
+                    require("mini.bufremove").delete(0, true)
+                end,
+                desc = "Delete Buffer (Force)",
+            },
+        },
+    },
+    {
+        "nvim-pack/nvim-spectre",
+        keys = {
+            {
+                "<leader>sr",
+                function()
+                    require("spectre").open()
+                end,
+                desc = "Replace in files (Spectre)",
+            },
         },
     },
 }

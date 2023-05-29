@@ -12,37 +12,37 @@ return {
             delete_check_events = "TextChanged",
         },
         keys = {
-            {
-                "<S-Tab>",
-                mode = { "i", "s" },
-                function()
-                    if require("luasnip").jumpable(-1) then
-                        require("luasnip").jump(-1)
-                    end
-                end,
-                silent = true,
-            },
-            {
-                "<Tab>",
-                mode = "i",
-                function()
-                    if require("luasnip").jumpable(1) then
-                        require("luasnip").jump(1)
-                    else
-                        return "<tab>"
-                    end
-                end,
-                expr = true,
-                silent = true,
-            },
-            {
-                "<tab>",
-                mode = "s",
-                function()
-                    return require("luasnip").jump(1)
-                end,
-                silent = true,
-            },
+            -- {
+            --     "<S-Tab>",
+            --     mode = { "i", "s" },
+            --     function()
+            --         if require("luasnip").jumpable(-1) then
+            --             require("luasnip").jump(-1)
+            --         end
+            --     end,
+            --     silent = true,
+            -- },
+            -- {
+            --     "<Tab>",
+            --     mode = "i",
+            --     function()
+            --         if require("luasnip").jumpable(1) then
+            --             require("luasnip").jump(1)
+            --         else
+            --             return "<tab>"
+            --         end
+            --     end,
+            --     expr = true,
+            --     silent = true,
+            -- },
+            -- {
+            --     "<tab>",
+            --     mode = "s",
+            --     function()
+            --         return require("luasnip").jump(1)
+            --     end,
+            --     silent = true,
+            -- },
         },
     },
     {

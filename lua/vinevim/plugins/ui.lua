@@ -10,6 +10,8 @@ return {
                 right_mouse_command = function(n)
                     require("mini.bufremove").delete(n, false)
                 end,
+                diagnostics = "nvim_lsp",
+                always_show_bufferline = false,
                 offsets = {
                     {
                         filetype = "NvimTree",
@@ -49,14 +51,15 @@ return {
             show_current_context_start = true,
             show_end_of_line = false,
             space_char_blankline = " ",
+            filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
         },
-        config = function(_, opts)
-            -- vim.opt.list = true
-            -- vim.opt.listchars:append("space:⋅")
-            -- vim.opt.listchars:append("tab:>-")
-            -- vim.opt.listchars:append('eol:↴')
-            require("indent_blankline").setup(opts)
-        end,
+        -- config = function(_, opts)
+        --     -- vim.opt.list = true
+        --     -- vim.opt.listchars:append("space:⋅")
+        --     -- vim.opt.listchars:append("tab:>-")
+        --     -- vim.opt.listchars:append('eol:↴')
+        --     require("indent_blankline").setup(opts)
+        -- end,
     },
     {
         "goolord/alpha-nvim",
