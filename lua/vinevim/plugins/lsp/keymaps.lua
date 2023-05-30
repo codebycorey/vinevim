@@ -1,45 +1,78 @@
 local M = {}
 
--- function M.setup(client, buffer)
-function M.setup(_, buffer)
-    -- Set keymap for buffer
-    local set = function(lhs, rhs, opts)
-        local lsp_set_opts = { buffer = buffer, remap = false, silent = true }
-        local desc_opts = { desc = "Lsp: " .. (opts.desc or "") }
-        local options = vim.tbl_deep_extend("force", lsp_set_opts, opts, desc_opts)
-        local mode = opts.mode or "n"
+M.keys = {
+    {
+        "gd",
+        function()
+            require("telescope.builtin").lsp_definitions()
+        end,
+        desc = "[G]oto [D]efinition",
+    },
+    { "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
+    {
+        "gi",
+        function()
+            require("telescope.builtin").lsp_implementations()
+        end,
+        desc = "[G]oto [I]mplementation",
+    },
+    {
+        "gr",
+        function()
+            require("telescope.builtin").lsp_references()
+        end,
+        desc = "[G]oto [R]eferences",
+    },
+    { "K", vim.lsp.buf.hover, desc = "Hover Documentation" },
+    { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
+    {
+        "<c-k>",
+        vim.lsp.buf.signature_help,
+        mode = "i",
+        desc = "Signature Help",
+        has = "signatureHelp",
+    },
 
-        options["has"] = nil
-        options["mode"] = nil
+    { "gl", vim.diagnostic.open_float, desc = "Float diagnostic information" },
+    {
+        "<leader>bf",
+        function()
+            vim.lsp.buf.format({ async = true })
+        end,
+        desc = "[B]uffer [F]ormat",
+    },
+    {
+        "<leader>li",
+        function()
+            vim.cmd("LspInfo")
+        end,
+        desc = "[I]nformation",
+    },
+    { "<leader>ca", vim.lsp.buf.code_action, desc = "[C]ode [A]ction" },
+    { "[d", vim.diagnostic.goto_prev, desc = "Goto previous [D]iagnostic" },
+    { "]d", vim.diagnostic.goto_next, desc = "Goto next [D]iagnostic" },
+    {
+        "<leader>rn",
+        function()
+            return ":IncRename " .. vim.fn.expand("<cword>")
+        end,
+        desc = "[R]ename",
+    },
+}
 
-        vim.keymap.set(mode, lhs, rhs, options)
+function M.setup(client, buffer)
+    for _, keys in ipairs(M.keys) do
+        if not keys.has or client.server_capabilities[keys.has .. "Provider"] then
+            local opts = {
+                buffer = buffer,
+                remap = false,
+                silent = true,
+                desc = "Lsp: " .. (keys.desc or ""),
+            }
+
+            vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
+        end
     end
-
-    local telescope = require("telescope.builtin")
-    set("gd", function()
-        telescope.lsp_definitions()
-    end, { desc = "[G]oto [D]efinition" })
-    set("gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
-    set("gi", function()
-        telescope.lsp_implementations()
-    end, { desc = "[G]oto [I]mplementation" })
-    set("gr", function()
-        telescope.lsp_references()
-    end, { desc = "[G]oto [R]eferences" })
-    set("K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-    set("gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
-    set("<c-k>", vim.lsp.buf.signature_help, { mode = "i", desc = "Signature Help", has = "signatureHelp" })
-
-    set("gl", vim.diagnostic.open_float, { desc = "Float diagnostic information" })
-    set("<leader>bf", function()
-        vim.lsp.buf.format({ async = true })
-    end, { desc = "[B]uffer [F]ormat" })
-    set("<leader>li", function()
-        vim.cmd("LspInfo")
-    end, { desc = "[I]nformation" })
-    set("<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-    set("[d", vim.diagnostic.goto_prev, { desc = "Goto previous [D]iagnostic" })
-    set("]d", vim.diagnostic.goto_next, { desc = "Goto next [D]iagnostic" })
 end
 
 return M
