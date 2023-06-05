@@ -16,5 +16,11 @@ require("lazy").setup({
     spec = {
         { import = "vinevim.plugins" },
     },
+    install = {
+        colorscheme = { "catppuccin", "kanagawa" },
+    },
+    performance = {
+        cache = { enabled = true },
+    },
     defaults = { lazy = true },
 })

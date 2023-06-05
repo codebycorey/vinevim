@@ -30,6 +30,7 @@ return {
                 },
                 show_close_icon = false,
             },
+            highlights = require("catppuccin.groups.integrations.bufferline").get(),
         },
     },
     {
@@ -39,7 +40,7 @@ return {
             options = {
                 disabled_filetypes = { "NvimTree" },
                 globalstatus = true,
-                theme = "auto",
+                theme = "catppuccin",
             },
         },
     },
