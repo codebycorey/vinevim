@@ -4,8 +4,8 @@ return {
     "nyoom-engineering/oxocarbon.nvim",
     {
         "catppuccin/nvim",
-        lazy = false,
-        priority = 1000,
+        -- lazy = false,
+        -- priority = 1000,
         name = "catppuccin",
         opts = {
             flavor = "mocha",
@@ -31,14 +31,14 @@ return {
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
-            vim.cmd.colorscheme("catppuccin-mocha")
+            -- vim.cmd.colorscheme("catppuccin-mocha")
         end,
     },
     "navarasu/onedark.nvim",
     {
         "rebelot/kanagawa.nvim",
-        -- lazy = false,
-        -- priority = 1000,
+        lazy = false,
+        priority = 1000,
         config = function(_, opts)
             require("kanagawa").setup(opts)
             require("kanagawa").load("dragon")
