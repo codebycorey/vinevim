@@ -59,6 +59,12 @@ return {
             end,
             desc = "[/] Fuzzy search current buffer",
         },
+        {
+            "<leader>,",
+            function ()
+                require("telescope.builtin").resume()
+            end
+        }
     },
     opts = {
         defaults = {
