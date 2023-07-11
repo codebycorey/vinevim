@@ -144,6 +144,17 @@ return {
     {
         "smjonas/inc-rename.nvim",
         cmd = { "IncRename", "IncRenameWord" },
-        config = true,
+        opts = {},
+    },
+    {
+        "folke/todo-comments.nvim",
+        cmd = { "TodoTrouble", "TodoTelescope" },
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
+    {
+        "echasnovski/mini.pairs",
+        event = "VeryLazy",
+        opts = {},
     },
 }

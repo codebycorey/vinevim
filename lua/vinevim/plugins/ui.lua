@@ -40,7 +40,7 @@ return {
             options = {
                 disabled_filetypes = { "NvimTree" },
                 globalstatus = true,
-                theme = "catppuccin",
+                theme = "auto",
             },
         },
     },

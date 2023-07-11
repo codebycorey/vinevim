@@ -54,9 +54,12 @@ M.keys = {
     {
         "<leader>rn",
         function()
-            return ":IncRename " .. vim.fn.expand("<cword>")
+            local inc_rename = require("inc_rename")
+            return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
         end,
         desc = "[R]ename",
+        expr = true,
+        has = "rename",
     },
 }
 
@@ -68,6 +71,7 @@ function M.setup(client, buffer)
                 remap = false,
                 silent = true,
                 desc = "Lsp: " .. (keys.desc or ""),
+                expr = keys.expr or nil,
             }
 
             vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)

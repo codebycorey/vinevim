@@ -41,7 +41,8 @@ return {
         priority = 1000,
         config = function(_, opts)
             require("kanagawa").setup(opts)
-            require("kanagawa").load("dragon")
+            -- require("kanagawa").load("dragon")
+            require("kanagawa").load()
         end,
     },
 }
