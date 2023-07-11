@@ -4,7 +4,7 @@ return {
     "nyoom-engineering/oxocarbon.nvim",
     {
         "catppuccin/nvim",
-        -- lazy = false,
+        lazy = false,
         -- priority = 1000,
         name = "catppuccin",
         opts = {
@@ -13,9 +13,9 @@ return {
             transparent_background = false,
             color_overrides = {
                 mocha = {
-                    base = "#181616",
-                    mantle = "#181616",
-                    crust = "#181616",
+                    -- base = "#181616",
+                    -- mantle = "#181616",
+                    -- crust = "#181616",
                 },
             },
             integrations = {
