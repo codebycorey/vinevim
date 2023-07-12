@@ -36,7 +36,7 @@ return {
 
             -- setup all servers installed
             for _, server_name in ipairs(installed_servers) do
-                local lsp_options = require("vinevim.plugins.lsp.settings").get_server_settings(server_name)
+                local lsp_options = opts.servers[server_name] or {}
                 lsp_options.capabilities = capabilities
                 lsp_options.on_attach = on_attach
 

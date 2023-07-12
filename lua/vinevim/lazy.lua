@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         { import = "vinevim.plugins" },
+        { import = "vinevim.plugins.lsp.lang" },
     },
     install = {
         colorscheme = { "catppuccin", "kanagawa" },
