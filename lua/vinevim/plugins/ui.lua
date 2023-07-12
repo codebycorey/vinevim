@@ -54,13 +54,13 @@ return {
             space_char_blankline = " ",
             filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
         },
-        -- config = function(_, opts)
-        --     -- vim.opt.list = true
-        --     -- vim.opt.listchars:append("space:⋅")
-        --     -- vim.opt.listchars:append("tab:>-")
-        --     -- vim.opt.listchars:append('eol:↴')
-        --     require("indent_blankline").setup(opts)
-        -- end,
+        config = function(_, opts)
+            vim.opt.list = true
+            vim.opt.listchars:append("space:⋅")
+            vim.opt.listchars:append("tab:>-")
+            vim.opt.listchars:append('eol:↴')
+            require("indent_blankline").setup(opts)
+        end,
     },
     {
         "goolord/alpha-nvim",
