@@ -92,6 +92,9 @@ return {
                     formatting.prettier,
                     formatting.stylua,
                     formatting.eslint,
+                    formatting.black,
+                    formatting.isort,
+                    diagnostics.flake8,
                     diagnostics.eslint,
                 },
             })
