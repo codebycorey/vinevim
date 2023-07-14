@@ -152,9 +152,4 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         opts = {},
     },
-    {
-        "echasnovski/mini.pairs",
-        event = "VeryLazy",
-        opts = {},
-    },
 }

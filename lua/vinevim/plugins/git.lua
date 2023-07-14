@@ -10,14 +10,23 @@ return {
     },
     {
         "NeogitOrg/neogit",
-        dependencies = "nvim-lua/plenary.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim",
+        },
         cmd = { "Neogit" },
         keys = {
             {
                 "<leader>g",
                 function()
-                    require("neogit").open()
+                    require("neogit").open({})
                 end,
+            },
+        },
+        opts = {
+            -- kind = "float",
+            integrations = {
+                diffview = true,
             },
         },
     },
