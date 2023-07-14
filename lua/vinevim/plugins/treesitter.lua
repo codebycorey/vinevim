@@ -22,8 +22,6 @@ return {
             ensure_installed = {
                 "bash",
                 "html",
-                "javascript",
-                "json",
                 "lua",
                 "luadoc",
                 "luap",
@@ -32,8 +30,6 @@ return {
                 "python",
                 "query",
                 "regex",
-                "tsx",
-                "typescript",
                 "vim",
                 "vimdoc",
                 "yaml",

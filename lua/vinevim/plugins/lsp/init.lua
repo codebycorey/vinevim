@@ -12,6 +12,7 @@ return {
                 "nvim-telescope/telescope.nvim",
             },
             { "b0o/SchemaStore.nvim" },
+            { "folke/neodev.nvim" },
         },
         opts = {
             diagnostic = {
@@ -24,21 +25,19 @@ return {
         config = function(_, opts)
             local cmp_nvim_lsp = require("cmp_nvim_lsp")
             local nvim_capabilities = vim.lsp.protocol.make_client_capabilities()
-            local capabilities = cmp_nvim_lsp.default_capabilities(nvim_capabilities)
+
+            local capabilities =
+                vim.tbl_deep_extend("force", {}, cmp_nvim_lsp.default_capabilities(), nvim_capabilities)
 
             local installed_servers = require("mason-lspconfig").get_installed_servers()
-
-            local on_attach = function(client, buffer)
-                require("vinevim.plugins.lsp.keymaps").setup(client, buffer)
-                require("vinevim.plugins.lsp.format").setup(client, buffer)
-                require("vinevim.plugins.lsp.highlight").setup(client, buffer)
-            end
 
             -- setup all servers installed
             for _, server_name in ipairs(installed_servers) do
                 local lsp_options = opts.servers[server_name] or {}
                 lsp_options.capabilities = capabilities
-                lsp_options.on_attach = on_attach
+                lsp_options.on_attach = function(client, buffer)
+                    require("vinevim.plugins.lsp.keymaps").setup(client, buffer)
+                end
 
                 require("lspconfig")[server_name].setup(lsp_options)
             end
@@ -50,28 +49,16 @@ return {
         "williamboman/mason.nvim",
         cmd = "Mason",
         keys = { { "<leader>cm", vim.cmd.Mason, desc = "Mason" } },
-        opts = {
-            ensure_installed = {
-                "spellcheck",
-            },
-        },
-        config = function(_, opts)
-            require("mason").setup(opts)
-        end,
+        opts = {},
     },
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = { "williamboman/mason.nvim" },
         opts = {
             ensure_installed = {
-                "lua_ls",
-                "jsonls",
-                "pyright",
-                "tsserver",
                 "rust_analyzer",
                 "gopls",
                 "bashls",
-                "svelte",
                 "marksman",
             },
             automatic_installation = true,
@@ -101,6 +88,7 @@ return {
         end,
     },
     {
-        -- "lsp_signature",
+        "folke/neodev.nvim",
+        opts = {},
     },
 }
