@@ -24,7 +24,7 @@ return {
             },
         },
         opts = {
-            -- kind = "float",
+            kind = "split",
             integrations = {
                 diffview = true,
             },
