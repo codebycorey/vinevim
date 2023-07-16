@@ -2,9 +2,14 @@
 vim.keymap.set("", "<Space>", "<Nop>")
 
 -- Navigate Buffers
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Go to next buffer" })
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Go to previous buffer" })
-vim.keymap.set("n", "<leader><leader>q", "<Cmd>bp|bd #<CR>", { desc = "Close buffer and switch to previous" })
+vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Go to next buffer" })
+vim.keymap.set("n", "[b", ":bprevious<CR>", { desc = "Go to previous buffer" })
+
+-- Move to window using the <ctrl> hjkl keys
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 
 -- Jump Tmux session
 vim.keymap.set("n", "<C-f>", "<Cmd>:silent !tmux neww tmux-manager<CR>", { desc = "Switch tmux session" })
@@ -39,4 +44,4 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Search term  jumping up with cursor 
 
 vim.keymap.set("x", "<leader>p", '"_dP')
 
-vim.keymap.set("n", "<leader>l", vim.cmd.Lazy , { desc = "[L]azy" })
+vim.keymap.set("n", "<leader>l", vim.cmd.Lazy, { desc = "[L]azy" })

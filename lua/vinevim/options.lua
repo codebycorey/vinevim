@@ -1,4 +1,4 @@
--- setup leader key early 
+-- setup leader key early
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -13,6 +13,9 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.smartcase = true
 vim.opt.showtabline = 4
+
+-- spelling
+vim.opt.spelllang = { "en", "en_us" }
 
 -- Turn off Search Highlight
 vim.opt.hlsearch = false
