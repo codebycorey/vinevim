@@ -61,10 +61,10 @@ return {
         },
         {
             "<leader>,",
-            function ()
+            function()
                 require("telescope.builtin").resume()
-            end
-        }
+            end,
+        },
     },
     opts = {
         defaults = {

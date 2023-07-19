@@ -4,7 +4,7 @@ M.keys = {
     {
         "gd",
         function()
-            require("telescope.builtin").lsp_definitions()
+            require("telescope.builtin").lsp_definitions({ reuse_win = true })
         end,
         desc = "[G]oto [D]efinition",
     },
@@ -12,9 +12,16 @@ M.keys = {
     {
         "gi",
         function()
-            require("telescope.builtin").lsp_implementations()
+            require("telescope.builtin").lsp_implementations({ reuse_win = true })
         end,
         desc = "[G]oto [I]mplementation",
+    },
+    {
+        "gy",
+        function()
+            require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+        end,
+        desc = "[G]oto T[y]pe Definition",
     },
     {
         "gr",
@@ -32,12 +39,11 @@ M.keys = {
         desc = "Signature Help",
         has = "signatureHelp",
     },
-
     { "gl", vim.diagnostic.open_float, desc = "Float diagnostic information" },
     {
         "<leader>bf",
         function()
-            vim.lsp.buf.format({ async = true })
+            require("vinevim.plugins.lsp.format").format({ notify = true })
         end,
         desc = "[B]uffer [F]ormat",
     },

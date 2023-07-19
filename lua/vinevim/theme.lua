@@ -57,4 +57,3 @@ return {
     surimiOrange = "#FFA066",
     katanaGray = "#717C7C",
 }
-
