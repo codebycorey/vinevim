@@ -14,6 +14,7 @@ return {
             { "b0o/SchemaStore.nvim" },
             { "folke/neodev.nvim" },
         },
+        --@class PluginLspOpts
         opts = {
             diagnostic = {
                 virtual_text = true,
@@ -22,6 +23,7 @@ return {
                 severity_sort = true,
             },
         },
+        --@param opts PluginLspOpts
         config = function(_, opts)
             local cmp_nvim_lsp = require("cmp_nvim_lsp")
             local nvim_capabilities = vim.lsp.protocol.make_client_capabilities()

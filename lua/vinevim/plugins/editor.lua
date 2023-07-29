@@ -3,9 +3,6 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         cmd = "Neotree",
-        init = function()
-            vim.g.neo_tree_remove_legacy_commands = 1
-        end,
         opts = {
             filesystem = {
                 bind_to_cwd = false,
@@ -37,7 +34,8 @@ return {
         dependencies = {
             "s1n7ax/nvim-window-picker",
             opts = {
-                other_win_hl_color = require("vinevim.theme").waveRed,
+                -- other_win_hl_color = require("vinevim.theme").waveRed,
+                hint = 'floating-big-letter',
             },
         },
         keys = {
