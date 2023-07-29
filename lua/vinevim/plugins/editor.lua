@@ -34,7 +34,6 @@ return {
         dependencies = {
             "s1n7ax/nvim-window-picker",
             opts = {
-                -- other_win_hl_color = require("vinevim.theme").waveRed,
                 hint = 'floating-big-letter',
             },
         },
