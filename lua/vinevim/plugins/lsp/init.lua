@@ -7,6 +7,8 @@ return {
             { "williamboman/mason-lspconfig.nvim" },
             { "hrsh7th/cmp-nvim-lsp" },
 
+            { "williamboman/mason-lspconfig" },
+
             -- Misc
             {
                 "nvim-telescope/telescope.nvim",
@@ -22,6 +24,12 @@ return {
                 underline = true,
                 severity_sort = true,
             },
+            servers = {
+                rust_analyzer = {},
+                gopls = {},
+                bashls = {},
+                marksman = {},
+            },
         },
         --@param opts PluginLspOpts
         config = function(_, opts)
@@ -31,18 +39,29 @@ return {
             local capabilities =
                 vim.tbl_deep_extend("force", {}, cmp_nvim_lsp.default_capabilities(), nvim_capabilities)
 
-            local installed_servers = require("mason-lspconfig").get_installed_servers()
+            local all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
 
-            -- setup all servers installed
-            for _, server_name in ipairs(installed_servers) do
-                local lsp_options = opts.servers[server_name] or {}
+            --@param server string
+            local setup = function(server)
+                local lsp_options = opts.servers[server] or {}
                 lsp_options.capabilities = capabilities
                 lsp_options.on_attach = function(client, buffer)
                     require("vinevim.plugins.lsp.keymaps").setup(client, buffer)
                 end
 
-                require("lspconfig")[server_name].setup(lsp_options)
+                require("lspconfig")[server].setup(lsp_options)
             end
+
+            local ensure_installed = {} -- @type string[]
+            for server in pairs(opts.servers) do
+                if not vim.tbl_contains(all_mslp_servers, server) then
+                    setup(server)
+                else
+                    ensure_installed[#ensure_installed + 1] = server
+                end
+            end
+
+            require("mason-lspconfig").setup({ ensure_installed = ensure_installed, handlers = { setup } })
 
             vim.diagnostic.config(opts.diagnostic)
         end,
@@ -51,20 +70,27 @@ return {
         "williamboman/mason.nvim",
         cmd = "Mason",
         keys = { { "<leader>cm", vim.cmd.Mason, desc = "Mason" } },
-        opts = {},
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim" },
         opts = {
             ensure_installed = {
-                "rust_analyzer",
-                "gopls",
-                "bashls",
-                "marksman",
+                "stylua",
+                "prettierd",
+                "eslint_d",
+                "cspell",
             },
-            automatic_installation = true,
         },
+        ---@param opts MasonSettings | {ensure_installed: string[]}
+        config = function(_, opts)
+            require("mason").setup(opts)
+            local registry = require("mason-registry")
+            registry.refresh(function()
+                for _, pkg_name in ipairs(opts.ensure_installed) do
+                    local pkg = registry.get_package(pkg_name)
+                    if not pkg:is_installed() then
+                        pkg:install()
+                    end
+                end
+            end)
+        end,
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
@@ -77,14 +103,16 @@ return {
 
             null_ls.setup({
                 sources = {
-                    code_actions.eslint,
-                    formatting.prettier,
+                    code_actions.eslint_d,
+                    -- code_actions.cspell,
+                    formatting.prettierd,
                     formatting.stylua,
-                    formatting.eslint,
+                    formatting.eslint_d,
                     formatting.black,
                     formatting.isort,
                     diagnostics.flake8,
-                    diagnostics.eslint,
+                    diagnostics.eslint_d,
+                    -- diagnostics.cspell,
                 },
             })
         end,
