@@ -102,28 +102,5 @@ return {
     config = function(_, opts)
         require("telescope").setup(opts)
         require("telescope").load_extension("fzf")
-
-        local palette = require("vinevim.theme")
-
-        local TelescopeColor = {
-            TelescopeMatching = { fg = palette.oniViolet },
-            TelescopeSelection = { bg = palette.sumiInk2 },
-
-            TelescopeResultsNormal = { bg = palette.sumiInk0 },
-            TelescopeResultsTitle = { bg = palette.sumiInk0, fg = palette.sumiInk0 },
-
-            TelescopePromptBorder = { bg = palette.sumiInk2, fg = palette.sumiInk2 },
-            TelescopePromptNormal = { bg = palette.sumiInk2 },
-            TelescopePromptPrefix = { fg = palette.waveRed, bg = palette.sumiInk2 },
-            TelescopePromptTitle = { bg = palette.waveRed, fg = palette.sumniInk0 },
-
-            TelescopeResultsBorder = { bg = palette.sumiInk0, fg = palette.sumiInk0 },
-            TelescopePreviewBorder = { bg = palette.sumiInk0, fg = palette.sumiInk0 },
-            TelescopePreviewNormal = { bg = palette.sumiInk0 },
-            TelescopePreviewTitle = { bg = palette.waveAqua2, fg = palette.sumniInk0 },
-        }
-        for hl, col in pairs(TelescopeColor) do
-            vim.api.nvim_set_hl(0, hl, col)
-        end
     end,
 }
