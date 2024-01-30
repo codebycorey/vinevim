@@ -34,7 +34,7 @@ return {
         dependencies = {
             "s1n7ax/nvim-window-picker",
             opts = {
-                hint = 'floating-big-letter',
+                hint = "floating-big-letter",
             },
         },
         keys = {
@@ -148,6 +148,11 @@ return {
         "folke/todo-comments.nvim",
         cmd = { "TodoTrouble", "TodoTelescope" },
         event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
+    {
+        "folke/flash.nvim",
+        event = { "VeryLazy" },
         opts = {},
     },
 }

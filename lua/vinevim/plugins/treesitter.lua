@@ -1,5 +1,4 @@
 return {
-    { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
     {
         "nvim-treesitter/nvim-treesitter",
         dependencies = {
@@ -16,12 +15,10 @@ return {
             indent = {
                 enable = true,
             },
-            playground = {
-                enable = true,
-            },
             ensure_installed = {
                 "bash",
                 "html",
+                "jsdoc",
                 "lua",
                 "luadoc",
                 "luap",
@@ -44,9 +41,10 @@ return {
                     node_decremental = "<bs>",
                 },
             },
-            context_commentstring = {
-                enable = true,
-            },
+            -- context_commentstring = {
+            --     enable = true,
+            --     enable_autocmd = false,
+            -- },
         },
         keys = {
             { "<c-space>", desc = "Increment selection" },

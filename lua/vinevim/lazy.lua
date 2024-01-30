@@ -17,6 +17,7 @@ require("lazy").setup({
         { import = "vinevim.plugins" },
         { import = "vinevim.plugins.lsp.lang" },
     },
+    change_detection = { notify = false },
     install = {
         colorscheme = { "catppuccin", "kanagawa" },
     },
