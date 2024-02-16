@@ -4,7 +4,7 @@ vim.keymap.set("", "<Space>", "<Nop>")
 -- Navigate Buffers
 vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Go to next buffer" })
-vim.keymap.set("n", "<S-l>", ":bprevious<CR>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Go to previous buffer" })
 
 -- Jump Tmux session

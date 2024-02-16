@@ -67,6 +67,7 @@ return {
     {
         "rcarriga/nvim-notify",
         event = "VeryLazy",
+        disable = true,
         keys = {
             {
                 "<leader>un",
@@ -82,6 +83,11 @@ return {
         init = function()
             vim.notify = require("notify")
         end,
+    },
+    {
+        "j-hui/fidget.nvim",
+        event = "VeryLazy",
+        opts = {},
     },
     {
         "goolord/alpha-nvim",

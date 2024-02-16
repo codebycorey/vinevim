@@ -40,13 +40,13 @@ M.keys = {
         has = "signatureHelp",
     },
     { "gl", vim.diagnostic.open_float, desc = "Float diagnostic information" },
-    {
-        "<leader>bf",
-        function()
-            require("vinevim.plugins.lsp.format").format({ notify = true })
-        end,
-        desc = "[B]uffer [F]ormat",
-    },
+    -- {
+    --     "<leader>bf",
+    --     function()
+    --         require("vinevim.plugins.lsp.format").format({ notify = true })
+    --     end,
+    --     desc = "[B]uffer [F]ormat",
+    -- },
     {
         "<leader>li",
         function()

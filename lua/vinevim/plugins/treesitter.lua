@@ -18,7 +18,6 @@ return {
             ensure_installed = {
                 "bash",
                 "html",
-                "jsdoc",
                 "lua",
                 "luadoc",
                 "luap",
