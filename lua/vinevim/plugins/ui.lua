@@ -118,7 +118,7 @@ return {
                 },
             }
 
-            dashboard.section.header.val = headers.ANSI_SHADOW_VINEVIM
+            dashboard.section.header.val = headers.ANSI_SHADOW_NEOVIM
             dashboard.section.buttons.val = {
                 dashboard.button("<leader>sf", "[S]earch [F]iles"),
                 dashboard.button("<leader>sp", "[S]earch git [P]roject files"),

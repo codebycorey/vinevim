@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 
 -- Line Numbers
 vim.opt.number = true
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
 
 -- Tabs and Indents
 vim.opt.tabstop = 4

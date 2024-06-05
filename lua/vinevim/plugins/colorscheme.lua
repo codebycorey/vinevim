@@ -1,7 +1,4 @@
 return {
-    "gruvbox-community/gruvbox",
-    "folke/tokyonight.nvim",
-    "nyoom-engineering/oxocarbon.nvim",
     {
         "catppuccin/nvim",
         lazy = false,
@@ -43,8 +40,8 @@ return {
     "navarasu/onedark.nvim",
     {
         "rebelot/kanagawa.nvim",
-        lazy = false,
-        priority = 1000,
+        lazy = true,
+        -- priority = 1000,
         opts = {
             overrides = function(colors)
                 local theme = colors.theme

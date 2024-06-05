@@ -29,6 +29,10 @@ return {
                 gopls = {},
                 bashls = {},
                 marksman = {},
+                cssls = {},
+                tailwindcss = {},
+                mdx_analyzer = {},
+                -- sqls = {},
             },
         },
         --@param opts PluginLspOpts
@@ -93,33 +97,15 @@ return {
         end,
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
-        event = "BufReadPre",
-        enabled = false,
-        config = function()
-            local null_ls = require("null-ls")
-            local formatting = null_ls.builtins.formatting
-            local diagnostics = null_ls.builtins.diagnostics
-            local code_actions = null_ls.builtins.code_actions
-
-            null_ls.setup({
-                sources = {
-                    code_actions.eslint_d,
-                    -- code_actions.cspell,
-                    formatting.prettierd,
-                    formatting.stylua,
-                    formatting.eslint_d,
-                    formatting.black,
-                    formatting.isort,
-                    diagnostics.flake8,
-                    diagnostics.eslint_d,
-                    -- diagnostics.cspell,
-                },
-            })
-        end,
-    },
-    {
-        "folke/neodev.nvim",
-        opts = {},
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        cmd = "LazyDev",
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                -- { path = "luvit-meta/library", words = { "vim%.uv" } },
+            },
+        },
     },
 }

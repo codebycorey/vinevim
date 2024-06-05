@@ -47,23 +47,9 @@ return {
         },
     },
     {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        lazy = true,
-    },
-    {
-        "echasnovski/mini.comment",
+        "folke/ts-comments.nvim",
         event = "VeryLazy",
-        opts = {
-            options = {
-                custom_commentstring = function()
-                    return require("ts_context_commentstring.internal").calculate_commentstring()
-                        or vim.bo.commentstring
-                end,
-            },
-        },
-        config = function(_, opts)
-            require("mini.comment").setup(opts)
-        end,
+        opts = {},
     },
     {
         "folke/trouble.nvim",
@@ -71,15 +57,12 @@ return {
         keys = {
             {
                 "<leader>xx",
-                "<cmd>TroubleToggle document_diagnostics<cr>",
+                "<cmd>Trouble diagnostics toggle<cr>",
                 desc = "Trouble: Document Diagnics (Trouble)",
             },
-            { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Trouble Quckfix list (Trouble)" },
+            { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Trouble Quckfix list (Trouble)" },
         },
-    },
-    {
-        "mbbill/undotree",
-        keys = { { "<leader>u", ":UndotreeShow<CR>", desc = "Open Undotree" } },
+        opts = {},
     },
     {
         "ThePrimeagen/harpoon",

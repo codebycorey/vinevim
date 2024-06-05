@@ -1,16 +1,12 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        dependencies = {
-            "JoosepAlviste/nvim-ts-context-commentstring",
-        },
         event = { "BufReadPost", "BufNewFile" },
         build = ":TSUpdate",
         opts = {
             auto_install = true,
             highlight = {
                 enable = true,
-                additional_vim_regex_highlight = false,
             },
             indent = {
                 enable = true,
@@ -40,10 +36,6 @@ return {
                     node_decremental = "<bs>",
                 },
             },
-            -- context_commentstring = {
-            --     enable = true,
-            --     enable_autocmd = false,
-            -- },
         },
         keys = {
             { "<c-space>", desc = "Increment selection" },
@@ -51,10 +43,23 @@ return {
         },
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
+            vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+                pattern = { "*.mdx" },
+                callback = function()
+                    local buf = vim.api.nvim_get_current_buf()
+                    vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
+                end,
+            })
         end,
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
+    -- Automatically add closing tags for HTML and JSX
+    {
+        "windwp/nvim-ts-autotag",
         event = { "BufReadPost", "BufNewFile" },
         opts = {},
     },

@@ -54,6 +54,7 @@ return {
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-nvim-lua" },
+            { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
         },
         config = function()
             local cmp = require("cmp")
@@ -86,16 +87,16 @@ return {
                 },
                 mapping = mappings,
                 sources = cmp.config.sources({
+                    { name = "lazydev" },
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
                     { name = "buffer" },
                     { name = "path" },
                 }),
                 formatting = {
-                    format = function(entry, vim_item)
-                        -- vim_item.kind = symbol_map[vim_item.kind]
-                        vim_item.menu = source_map[entry.source.name]
-                        return vim_item
+                    format = function(entry, item)
+                        item.menu = source_map[entry.source.name]
+                        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
                     end,
                 },
             }
