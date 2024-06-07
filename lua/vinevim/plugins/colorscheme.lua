@@ -10,8 +10,8 @@ return {
             transparent_background = false,
             color_overrides = {
                 mocha = {
-                    base = "#121212",
-                    mantle = "#181818",
+                    base = "#202020",
+                    mantle = "#262626",
                     crust = "#181616",
                 },
             },
@@ -37,11 +37,10 @@ return {
             vim.cmd.colorscheme("catppuccin-mocha")
         end,
     },
-    "navarasu/onedark.nvim",
     {
         "rebelot/kanagawa.nvim",
         lazy = true,
-        -- priority = 1000,
+        priority = 1000,
         opts = {
             overrides = function(colors)
                 local theme = colors.theme
