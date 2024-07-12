@@ -144,4 +144,9 @@ return {
         end,
     },
     { "MunifTanjim/nui.nvim", lazy = true },
+    {
+        "stevearc/dressing.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
 }
