@@ -22,7 +22,16 @@ return {
                 lua_ls = {
                     settings = {
                         Lua = {
+                            workspace = {
+                                checkThirdParty = false,
+                            },
                             telemetry = { enabled = false },
+                            hint = {
+                                enable = true,
+                                setType = false,
+                                paramType = true,
+                                paramName = "Disable",
+                            },
                         },
                     },
                 },
