@@ -6,6 +6,7 @@ return {
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
             { "hrsh7th/cmp-nvim-lsp" },
+            { "saghen/blink.cmp" },
 
             { "williamboman/mason-lspconfig" },
 
@@ -37,11 +38,8 @@ return {
         },
         --@param opts PluginLspOpts
         config = function(_, opts)
-            local cmp_nvim_lsp = require("cmp_nvim_lsp")
-            local nvim_capabilities = vim.lsp.protocol.make_client_capabilities()
-
-            local capabilities =
-                vim.tbl_deep_extend("force", {}, cmp_nvim_lsp.default_capabilities(), nvim_capabilities)
+            local blink_cmp = require("blink.cmp")
+            local capabilities = blink_cmp.get_lsp_capabilities()
 
             local all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
 
