@@ -15,7 +15,7 @@ return {
     },
     {
         "saghen/blink.cmp",
-        build = "cargo build --release",
+        version = "*",
         event = "InsertEnter",
         dependencies = {
             "rafamadriz/friendly-snippets",
@@ -30,7 +30,7 @@ return {
         opts = {
             completion = {
                 list = {
-                    selection = "auto_insert",
+                    selection = { auto_insert = true, preselect = false },
                 },
             },
             sources = {
@@ -41,6 +41,9 @@ return {
                         module = "lazydev.integrations.blink",
                         score_offset = 100,
                     },
+                },
+                per_filetype = {
+                    codecompanion = { "codecompanion" },
                 },
             },
             keymap = {
@@ -60,12 +63,5 @@ return {
         config = function(_, opts)
             require("blink.cmp").setup(opts)
         end,
-    },
-    {
-        "github/copilot.vim",
-        cmd = "Copilot",
-        build = ":Copilot auth",
-        event = "InsertEnter",
-        lazy = false,
     },
 }
