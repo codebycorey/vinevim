@@ -46,6 +46,11 @@ return {
                     codecompanion = { "codecompanion" },
                 },
             },
+            enabled = function()
+                return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
+                    and vim.bo.buftype ~= "prompt"
+                    and vim.b.completion ~= false
+            end,
             keymap = {
                 preset = "enter",
                 ["<C-y>"] = { "select_and_accept" },

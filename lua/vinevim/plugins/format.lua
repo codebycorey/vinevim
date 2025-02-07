@@ -20,7 +20,6 @@ return {
                 function()
                     local progress_notif = M.open_progress_notif("Conform", "Formatting buffer...")
                     require("conform").format({ lsp_fallback = true }, function(err)
-                        print("Formatting buffer done")
                         progress_notif:finish()
                         if err then
                             local fmt_info = "Conform"
