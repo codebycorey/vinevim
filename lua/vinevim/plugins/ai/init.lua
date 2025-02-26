@@ -31,11 +31,11 @@ return {
                     return require("codecompanion.adapters").extend("copilot", {
                         schema = {
                             model = {
-                                -- default = "claude-3.5-sonnet",
-                                default = "o3-mini-2025-01-31",
+                                -- default = "o3-mini",
+                                default = "claude-3.7-sonnet",
                             },
                             max_tokens = {
-                                default = 8192,
+                                default = 200000,
                             },
                         },
                     })

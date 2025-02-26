@@ -27,6 +27,13 @@ return {
                         -- separator = true,
                         text_align = "left",
                     },
+                    {
+                        filetype = "snacks_picker_list",
+                        text = "File Explorer",
+                        highlight = "Directory",
+                        -- separator = true,
+                        text_align = "left",
+                    },
                 },
                 show_close_icon = false,
             },
@@ -43,26 +50,6 @@ return {
                 theme = "auto",
             },
         },
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        event = { "BufReadPost", "BufNewFile" },
-        opts = {
-            indent = {
-                char = "│",
-            },
-            exclude = {
-                filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-            },
-        },
-        main = "ibl",
-        config = function(_, opts)
-            vim.opt.list = true
-            vim.opt.listchars:append("space:⋅")
-            vim.opt.listchars:append("tab:>-")
-            vim.opt.listchars:append("eol:↴")
-            require("ibl").setup(opts)
-        end,
     },
     {
         "rcarriga/nvim-notify",

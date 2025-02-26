@@ -14,6 +14,12 @@ vim.opt.smartindent = true
 vim.opt.smartcase = true
 vim.opt.showtabline = 4
 
+-- listchars
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("tab:>-")
+vim.opt.listchars:append("eol:↴")
+
 -- spelling
 vim.opt.spelllang = { "en", "en_us" }
 
