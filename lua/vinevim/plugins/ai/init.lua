@@ -31,7 +31,6 @@ return {
                     return require("codecompanion.adapters").extend("copilot", {
                         schema = {
                             model = {
-                                -- default = "o3-mini",
                                 default = "claude-3.7-sonnet",
                             },
                             max_tokens = {
@@ -41,23 +40,23 @@ return {
                     })
                 end,
             },
-            display = {
-                chat = {
-                    intro_message = "What can I help with (Press ? for options)",
-                    show_references = true,
-                    show_settings = false,
-                    show_header_separator = true,
-                },
-            },
             strategies = {
                 chat = {
-                    adapter = "copilot",
-                    variables = {
-                        ["guidelines"] = {
-                            callback = require("vinevim.plugins.ai.prompts.generic-guidelines"),
-                            description = "Automated",
+                    slash_commands = {
+                        ["buffer"] = {
+                            -- Location to the slash command in CodeCompanion
+                            callback = "strategies.chat.slash_commands.buffer",
+                            description = "Select a buffer using fzf",
                             opts = {
-                                contains_code = false,
+                                provider = "fzf_lua", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
+                            },
+                        },
+                        ["file"] = {
+                            -- Location to the slash command in CodeCompanion
+                            callback = "strategies.chat.slash_commands.file",
+                            description = "Select a file using fzf",
+                            opts = {
+                                provider = "fzf_lua", -- Other options include 'default', 'mini_pick', 'fzf_lua', snacks
                             },
                         },
                     },
@@ -101,16 +100,17 @@ return {
                 end,
                 desc = "[A]I [N]ew Chat",
             },
+            -- {
+            --     "<leader>aa",
+            --     function()
+            --         vim.cmd("CodeCompanionActions")
+            --     end,
+            --     desc = "[A]I [A]ctions",
+            -- },
             {
                 "<leader>aa",
                 function()
-                    vim.cmd("CodeCompanionActions")
-                end,
-                desc = "[A]I [A]ctions",
-            },
-            {
-                "<leader>aa",
-                function()
+                    print("di this run")
                     vim.cmd("CodeCompanionChat add")
                 end,
                 desc = "AI add to chat",

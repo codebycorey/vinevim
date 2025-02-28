@@ -67,5 +67,15 @@ return {
                 layout = "horizontal",
             },
         },
+        actions = {
+            -- Remove once blink is fixed
+            files = {
+                true,
+                ["ctrl-g"] = function(_, opts)
+                    local o = vim.tbl_deep_extend("keep", { resume = true }, opts.__call_opts)
+                    opts.__call_fn(o)
+                end,
+            },
+        },
     },
 }
