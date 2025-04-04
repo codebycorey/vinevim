@@ -110,7 +110,6 @@ return {
             {
                 "<leader>aa",
                 function()
-                    print("di this run")
                     vim.cmd("CodeCompanionChat add")
                 end,
                 desc = "AI add to chat",

@@ -69,13 +69,19 @@ return {
         },
         actions = {
             -- Remove once blink is fixed
-            files = {
-                true,
-                ["ctrl-g"] = function(_, opts)
-                    local o = vim.tbl_deep_extend("keep", { resume = true }, opts.__call_opts)
-                    opts.__call_fn(o)
-                end,
-            },
+            -- files = {
+            --     true,
+            --     ["ctrl-g"] = function(_, opts)
+            --         local o = vim.tbl_deep_extend("keep", { resume = true }, opts.__call_opts)
+            --         opts.__call_fn(o)
+            --     end,
+            -- },
         },
     },
+    config = function(_, opts)
+        -- calling `setup` is optional for customization
+        local fzf_lua = require("fzf-lua")
+        fzf_lua.setup(opts)
+        fzf_lua.register_ui_select()
+    end,
 }

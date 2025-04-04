@@ -4,7 +4,7 @@ M.keys = {
     {
         "gd",
         function()
-            require("telescope.builtin").lsp_definitions({ reuse_win = true })
+            require("fzf-lua").lsp_definitions()
         end,
         desc = "[G]oto [D]efinition",
     },
@@ -12,33 +12,27 @@ M.keys = {
     {
         "gi",
         function()
-            require("telescope.builtin").lsp_implementations({ reuse_win = true })
+            require("fzf-lua").lsp_implemenations()
         end,
         desc = "[G]oto [I]mplementation",
     },
     {
         "gy",
         function()
-            require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+            require("fzf-lua").lsp_typedefs()
         end,
         desc = "[G]oto T[y]pe Definition",
     },
     {
         "gr",
         function()
-            require("telescope.builtin").lsp_references()
+            require("fzf-lua").lsp_references()
         end,
         desc = "[G]oto [R]eferences",
     },
     { "K", vim.lsp.buf.hover, desc = "Hover Documentation" },
     { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
-    {
-        "<c-k>",
-        vim.lsp.buf.signature_help,
-        mode = "i",
-        desc = "Signature Help",
-        has = "signatureHelp",
-    },
+    { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
     { "gl", vim.diagnostic.open_float, desc = "Float diagnostic information" },
     -- {
     --     "<leader>bf",
@@ -69,7 +63,7 @@ M.keys = {
     },
 }
 
-function M.setup(client, buffer)
+function M.set_keys(client, buffer)
     for _, keys in ipairs(M.keys) do
         if not keys.has or client.server_capabilities[keys.has .. "Provider"] then
             local opts = {
@@ -79,10 +73,22 @@ function M.setup(client, buffer)
                 desc = "Lsp: " .. (keys.desc or ""),
                 expr = keys.expr or nil,
             }
-
             vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
         end
     end
+end
+
+function M.setup()
+    vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
+        callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if not client then
+                return
+            end
+            M.set_keys(client, args.buf)
+        end,
+    })
 end
 
 return M

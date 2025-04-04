@@ -19,12 +19,26 @@ return {
                 "luap",
                 "markdown",
                 "markdown_inline",
-                "python",
                 "query",
                 "regex",
+                "toml",
                 "vim",
                 "vimdoc",
                 "yaml",
+
+                -- typescript
+                "typescript",
+                "tsx",
+                "javascript",
+                "jsdoc",
+
+                -- jsonls
+                "json",
+                "json5",
+                "jsonc",
+
+                -- python
+                "python",
             },
             ignore_install = {},
             incremental_selection = {

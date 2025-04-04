@@ -1,71 +1,41 @@
+---@type LazySpec
 return {
     {
-        "neovim/nvim-lspconfig",
-        event = "BufReadPre",
+        "lsp",
+        virtual = true,
         dependencies = {
-            { "williamboman/mason.nvim" },
-            { "williamboman/mason-lspconfig.nvim" },
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "saghen/blink.cmp" },
-
-            { "williamboman/mason-lspconfig" },
-
-            -- Misc
-            {
-                "nvim-telescope/telescope.nvim",
-            },
             { "b0o/SchemaStore.nvim" },
+            { "saghen/blink.cmp" },
             { "folke/neodev.nvim" },
+            { "williamboman/mason.nvim" },
         },
-        --@class PluginLspOpts
-        opts = {
-            diagnostic = {
-                virtual_text = true,
-                update_in_insert = true,
-                underline = true,
-                severity_sort = true,
-            },
-            servers = {
-                rust_analyzer = {},
-                gopls = {},
-                bashls = {},
-                marksman = {},
-                cssls = {},
-                tailwindcss = {},
-                mdx_analyzer = {},
-                -- sqls = {},
-            },
-        },
-        --@param opts PluginLspOpts
+        opts = function()
+            local servers = vim.iter(ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)))
+                :map(function(_, filepath)
+                    local name = vim.fs.basename(filepath):gsub("%.lua$", "")
+                    return name ~= "*" and name or nil
+                end)
+                :totable()
+
+            return {
+                servers = servers,
+                diagnostic = {
+                    virtual_text = true,
+                    update_in_insert = true,
+                    underline = true,
+                    severity_sort = true,
+                },
+            }
+        end,
         config = function(_, opts)
-            local blink_cmp = require("blink.cmp")
-            local capabilities = blink_cmp.get_lsp_capabilities()
+            vim.lsp.config("*", {
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
+            })
 
-            local all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-
-            --@param server string
-            local setup = function(server)
-                local lsp_options = opts.servers[server] or {}
-                lsp_options.capabilities = capabilities
-                lsp_options.on_attach = function(client, buffer)
-                    require("vinevim.plugins.lsp.keymaps").setup(client, buffer)
-                end
-
-                require("lspconfig")[server].setup(lsp_options)
-            end
-
-            local ensure_installed = {} -- @type string[]
-            for server in pairs(opts.servers) do
-                if not vim.tbl_contains(all_mslp_servers, server) then
-                    setup(server)
-                else
-                    ensure_installed[#ensure_installed + 1] = server
-                end
-            end
-
-            require("mason-lspconfig").setup({ ensure_installed = ensure_installed, handlers = { setup } })
-
+            vim.lsp.enable(opts.servers)
             vim.diagnostic.config(opts.diagnostic)
+
+            require("vinevim.plugins.lsp.keymaps").setup()
         end,
     },
     {
@@ -78,6 +48,14 @@ return {
                 "prettierd",
                 "eslint_d",
                 "cspell",
+
+                "js-debug-adapter",
+
+                "pyright", -- Python LSP
+
+                -- "lua_ls",
+                -- "tsserver", "svelte"
+                -- jsonls
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
