@@ -153,11 +153,6 @@ return {
         opts = {},
     },
     {
-        "folke/flash.nvim",
-        event = { "VeryLazy" },
-        opts = {},
-    },
-    {
         "christoomey/vim-tmux-navigator",
         cmd = {
             "TmuxNavigateLeft",
