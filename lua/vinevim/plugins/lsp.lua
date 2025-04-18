@@ -8,8 +8,7 @@ local utils = require("vinevim.utils")
 ---@type LazySpec
 return {
     {
-        "lsp",
-        virtual = true,
+        "neovim/nvim-lspconfig",
         dependencies = {
             { "b0o/SchemaStore.nvim" },
             { "saghen/blink.cmp" },
@@ -78,18 +77,6 @@ return {
                     utils.set_lsp_keymap(client, args.buf, opts.keys)
                 end,
             })
-
-            vim.api.nvim_create_user_command(
-                "LspInfo",
-                ":checkhealth vim.lsp",
-                { desc = "Alias to `:checkhealth vim.lsp`" }
-            )
-
-            ---@todo investigate a better way to reload LSP servers as it breaks lazydev
-            vim.api.nvim_create_user_command("LspReload", function()
-                vim.lsp.stop_client(vim.lsp.get_clients())
-                vim.cmd([[edit!]])
-            end, {})
         end,
     },
     {
