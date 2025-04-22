@@ -19,14 +19,12 @@ return {
         cmd = "Mason",
         keys = { { "<leader>cm", vim.cmd.Mason, desc = "Mason" } },
         opts = function()
-            local lsp = vim.iter(ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)))
-                :map(function(_, filepath)
-                    local name = vim.fs.basename(filepath):gsub("%.lua$", "")
-                    if masonLspMap[name] then
-                        return masonLspMap[name]
-                    end
-                end)
-                :totable()
+            local lsp = vim.tbl_map(function(path)
+                local name = vim.fs.basename(path):gsub("%.lua$", "")
+                if masonLspMap[name] then
+                    return masonLspMap[name]
+                end
+            end, vim.fn.glob(vim.fn.stdpath("config") .. "/lsp/*.lua", false, true))
 
             local dap = {
                 "js-debug-adapter",
