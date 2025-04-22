@@ -1,21 +1,7 @@
 return {
     {
-        "L3MON4D3/LuaSnip",
-        dependencies = {
-            "rafamadriz/friendly-snippets",
-            config = function()
-                require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-        },
-        opts = {
-            history = true,
-            delete_check_events = "TextChanged",
-        },
-        keys = {},
-    },
-    {
         "saghen/blink.cmp",
-        version = "*",
+        version = "1.*",
         event = "InsertEnter",
         dependencies = {
             "rafamadriz/friendly-snippets",
@@ -24,14 +10,17 @@ return {
                 opts = {},
             },
         },
-
         ---@module "blink.cmp"
         ---@type blink.cmp.Config
         opts = {
             completion = {
+                accept = {
+                    dot_repeat = false,
+                },
                 list = {
                     selection = { auto_insert = true, preselect = false },
                 },
+                documentation = { auto_show = true },
             },
             sources = {
                 default = { "lazydev", "lsp", "path", "buffer" },
@@ -47,9 +36,7 @@ return {
                 },
             },
             enabled = function()
-                return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
-                    and vim.bo.buftype ~= "prompt"
-                    and vim.b.completion ~= false
+                return vim.bo.buftype ~= "prompt" and vim.b.completion ~= false
             end,
             keymap = {
                 preset = "enter",

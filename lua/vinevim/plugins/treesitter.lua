@@ -3,7 +3,10 @@ return {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPost", "BufNewFile" },
         build = ":TSUpdate",
+        ---@type TSConfig
         opts = {
+            modules = {},
+            sync_install = false,
             auto_install = true,
             highlight = {
                 enable = true,
@@ -74,6 +77,11 @@ return {
     -- Automatically add closing tags for HTML and JSX
     {
         "windwp/nvim-ts-autotag",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
+    },
+    {
+        "folke/ts-comments.nvim",
         event = { "BufReadPost", "BufNewFile" },
         opts = {},
     },

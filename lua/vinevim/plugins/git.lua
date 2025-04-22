@@ -10,7 +10,7 @@ return {
             {
                 "<leader>g",
                 function()
-                    require("neogit").open({})
+                    require("neogit").open()
                 end,
             },
         },

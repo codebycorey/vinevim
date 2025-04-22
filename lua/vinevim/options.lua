@@ -14,14 +14,11 @@ vim.opt.smartindent = true
 vim.opt.smartcase = true
 vim.opt.showtabline = 4
 
--- listchars
+-- show whitespace
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("tab:>-")
 vim.opt.listchars:append("eol:↴")
-
--- spelling
-vim.opt.spelllang = { "en", "en_us" }
 
 -- Turn off Search Highlight
 vim.opt.hlsearch = false
@@ -38,8 +35,10 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.writebackup = false
+
+vim.o.mousescroll = "ver:3,hor:0"
 
 -- Scrolling
 vim.opt.scrolloff = 8
@@ -51,12 +50,13 @@ vim.opt.colorcolumn = "80"
 vim.opt.showmode = false
 
 vim.opt.cmdheight = 1
+vim.opt.laststatus = 3
 vim.opt.updatetime = 50
 
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = "menuone,noselect,noinsert"
 
 vim.opt.mouse = "a"
 

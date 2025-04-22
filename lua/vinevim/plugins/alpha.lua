@@ -1,82 +1,5 @@
 return {
     {
-        "akinsho/bufferline.nvim",
-        event = "VeryLazy",
-        opts = {
-            options = {
-                close_command = function(n)
-                    require("mini.bufremove").delete(n, false)
-                end,
-                right_mouse_command = function(n)
-                    require("mini.bufremove").delete(n, false)
-                end,
-                diagnostics = "nvim_lsp",
-                always_show_bufferline = false,
-                offsets = {
-                    {
-                        filetype = "NvimTree",
-                        text = "File Explorer",
-                        highlight = "Directory",
-                        separator = true,
-                        text_align = "left",
-                    },
-                    {
-                        filetype = "neo-tree",
-                        text = "File Explorer",
-                        highlight = "Directory",
-                        -- separator = true,
-                        text_align = "left",
-                    },
-                    {
-                        filetype = "snacks_picker_list",
-                        text = "File Explorer",
-                        highlight = "Directory",
-                        -- separator = true,
-                        text_align = "left",
-                    },
-                },
-                show_close_icon = false,
-            },
-            highlights = require("catppuccin.groups.integrations.bufferline").get(),
-        },
-    },
-    {
-        "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        opts = {
-            options = {
-                disabled_filetypes = { "NvimTree" },
-                globalstatus = true,
-                theme = "auto",
-            },
-        },
-    },
-    {
-        "rcarriga/nvim-notify",
-        event = "VeryLazy",
-        disable = true,
-        keys = {
-            {
-                "<leader>un",
-                function()
-                    require("notify").dismiss({ silent = true, pending = true })
-                end,
-                desc = "Dismiss all Notifications",
-            },
-        },
-        opts = {
-            timeout = 3000,
-        },
-        init = function()
-            vim.notify = require("notify")
-        end,
-    },
-    {
-        "j-hui/fidget.nvim",
-        event = "VeryLazy",
-        opts = {},
-    },
-    {
         "goolord/alpha-nvim",
         event = "VimEnter",
         config = function()
@@ -129,11 +52,5 @@ return {
                 end,
             })
         end,
-    },
-    { "MunifTanjim/nui.nvim", lazy = true },
-    {
-        "stevearc/dressing.nvim",
-        event = { "BufReadPost", "BufNewFile" },
-        opts = {},
     },
 }
