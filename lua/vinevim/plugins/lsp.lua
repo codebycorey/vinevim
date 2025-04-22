@@ -36,7 +36,10 @@ return {
             return {
                 servers = servers,
                 diagnostic = {
-                    virtual_text = true,
+                    -- virtual_text = { current_line = true, severity = { min = "INFO", max = "WARN" } },
+                    -- virtual_lines = { current_line = true, severity = { min = "ERROR" } },
+                    virtual_text = false,
+                    virtual_lines = { current_line = true },
                     update_in_insert = true,
                     underline = true,
                     severity_sort = true,
