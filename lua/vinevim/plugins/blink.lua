@@ -41,8 +41,8 @@ return {
             keymap = {
                 preset = "enter",
                 ["<C-y>"] = { "select_and_accept" },
-                ["Up"] = { "select_prev" },
-                ["Down"] = { "select_next" },
+                ["<Up>"] = { "select_prev" },
+                ["<Down>"] = { "select_next" },
                 ["<C-p>"] = { "select_prev" },
                 ["<C-n>"] = { "select_next" },
             },
