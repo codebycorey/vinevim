@@ -25,9 +25,7 @@ return {
                 return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
             end
 
-            local servers = vim.tbl_map(function(path)
-                return vim.fs.basename(path):gsub("%.lua$", "")
-            end, vim.fn.glob(vim.fn.stdpath("config") .. "/lsp/*.lua", false, true))
+            local servers = utils.get_lsp_servers()
 
             ---@type LspOpts
             return {

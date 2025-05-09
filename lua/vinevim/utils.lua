@@ -26,4 +26,26 @@ function M.set_lsp_keymap(client, bufnr, keys)
     end
 end
 
+---@return string[] List of LSP server names (excluding disabled ones)
+function M.get_lsp_servers()
+    local servers = {}
+    local lsp_path = vim.fn.stdpath("config") .. "/lsp/"
+    local lsp_files = vim.fn.globpath(lsp_path, "*.lua", false, true)
+
+    for _, file in ipairs(lsp_files) do
+        -- Use pcall to safely read the first line
+        local ok, first_line = pcall(function()
+            return vim.fn.readfile(file, "", 1)[1] or ""
+        end)
+
+        -- Only process if we could read the file
+        if ok and not first_line:match("^%-%- disable") then
+            local server_name = vim.fs.basename(file):gsub("%.lua$", "")
+            table.insert(servers, server_name)
+        end
+    end
+
+    return servers
+end
+
 return M

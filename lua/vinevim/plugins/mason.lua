@@ -10,6 +10,7 @@ local masonLspMap = {
     ["pyright"] = "pyright",
     ["tailwindcss"] = "tailwindcss-language-server",
     ["ts_ls"] = "typescript-language-server",
+    ["vtsls"] = "vtsls",
 }
 
 ---@type LazySpec
@@ -19,12 +20,12 @@ return {
         cmd = "Mason",
         keys = { { "<leader>cm", vim.cmd.Mason, desc = "Mason" } },
         opts = function()
-            local lsp = vim.tbl_map(function(path)
-                local name = vim.fs.basename(path):gsub("%.lua$", "")
-                if masonLspMap[name] then
-                    return masonLspMap[name]
+            local lsp_servers = require("vinevim.utils").get_lsp_servers()
+            local lsp = vim.tbl_map(function(server)
+                if masonLspMap[server] then
+                    return masonLspMap[server]
                 end
-            end, vim.fn.glob(vim.fn.stdpath("config") .. "/lsp/*.lua", false, true))
+            end, lsp_servers)
 
             local dap = {
                 "js-debug-adapter",
