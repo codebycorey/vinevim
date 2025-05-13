@@ -29,6 +29,9 @@ return {
                 flash = true,
                 mason = true,
                 gitsigns = true,
+                mini = {
+                    enabled = true,
+                },
             },
         },
         config = function(_, opts)
