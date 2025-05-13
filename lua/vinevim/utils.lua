@@ -48,4 +48,25 @@ function M.get_lsp_servers()
     return servers
 end
 
+---@param version string The minimum required version to check against (e.g., "0.11")
+---@return boolean Whether the current Neovim version meets the requirement
+function M.version_check(version)
+    local current = vim.version()
+
+    -- Parse the required version string
+    local parts = vim.split(version, ".", { plain = true })
+    local req_major = tonumber(parts[1]) or 0
+    local req_minor = tonumber(parts[2]) or 0
+
+    -- Compare major version first
+    if current.major > req_major then
+        return true
+    elseif current.major < req_major then
+        return false
+    end
+
+    -- If major versions are equal, compare minor versions
+    return current.minor >= req_minor
+end
+
 return M

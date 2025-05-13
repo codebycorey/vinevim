@@ -31,8 +31,6 @@ return {
             return {
                 servers = servers,
                 diagnostic = {
-                    -- virtual_text = { current_line = true, severity = { min = "INFO", max = "WARN" } },
-                    -- virtual_lines = { current_line = true, severity = { min = "ERROR" } },
                     virtual_text = false,
                     virtual_lines = { current_line = true },
                     update_in_insert = true,
@@ -69,10 +67,16 @@ return {
                 group = vim.api.nvim_create_augroup("UserLspAttach", { clear = true }),
                 callback = function(args)
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
+
                     if not client or not args.buf then
                         return
                     end
+
                     utils.set_lsp_keymap(client, args.buf, opts.keys)
+
+                    if utils.version_check("0.12") then
+                        vim.lsp.document_color.enable(true, args.buf)
+                    end
                 end,
             })
         end,
