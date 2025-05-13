@@ -1,15 +1,14 @@
 return {
     {
         "akinsho/bufferline.nvim",
-        event = "VeryLazy",
         opts = function()
             return {
                 options = {
-                    close_command = function(n)
-                        require("mini.bufremove").delete(n, false)
+                    close_command = function(bufnr)
+                        require("mini.bufremove").delete(bufnr, false)
                     end,
-                    right_mouse_command = function(n)
-                        require("mini.bufremove").delete(n, false)
+                    right_mouse_command = function(bufner)
+                        require("mini.bufremove").delete(bufner, false)
                     end,
                     diagnostics = "nvim_lsp",
                     always_show_bufferline = false,
@@ -17,24 +16,10 @@ return {
                     show_buffer_close_icons = false,
                     offsets = {
                         {
-                            filetype = "NvimTree",
-                            text = "File Explorer",
-                            highlight = "Directory",
-                            separator = true,
-                            text_align = "left",
-                        },
-                        {
                             filetype = "neo-tree",
                             text = "File Explorer",
                             highlight = "Directory",
-                            -- separator = true,
-                            text_align = "left",
-                        },
-                        {
-                            filetype = "snacks_picker_list",
-                            text = "File Explorer",
-                            highlight = "Directory",
-                            -- separator = true,
+                            separator = true,
                             text_align = "left",
                         },
                     },
