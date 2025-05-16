@@ -34,33 +34,28 @@ return {
                 },
             },
         },
-        config = function(_, opts)
-            require("catppuccin").setup(opts)
-            vim.cmd.colorscheme("catppuccin-mocha")
-        end,
     },
     {
         "rebelot/kanagawa.nvim",
-        lazy = true,
         priority = 1000,
         opts = {
-            overrides = function(colors)
-                local theme = colors.theme
-                return {
-                    -- TelescopeTitle = { fg = theme.ui.special, bold = true },
-                    -- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
-                    -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-                    -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-                    -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-                    -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-                    -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-                }
-            end,
+            colors = {
+                theme = {
+                    all = {
+                        ui = {
+                            bg_gutter = "none",
+                            bg = "#202020", -- More gray background
+                            bg_dim = "#1c1c1c", -- Darker gray for contrast
+                            bg_p1 = "#262626", -- Mid-gray for panels
+                            bg_p2 = "#303030", -- Lighter gray for secondary panels
+                        },
+                    },
+                },
+            },
         },
         config = function(_, opts)
-            -- require("kanagawa").setup(opts)
-            -- require("kanagawa").load("dragon")
-            -- require("kanagawa").load()
+            require("kanagawa").setup(opts)
+            vim.cmd.colorscheme("kanagawa")
         end,
     },
 }
