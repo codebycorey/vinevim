@@ -52,19 +52,16 @@ return {
         },
     },
     opts = {
-        "telescope",
+        { "default-prompt" },
         fzf_colors = true,
-        fzf_opts = {
-            ["--no-scrollbar"] = true,
-        },
         winopts = {
+            border = "none",
             width = 0.8,
             height = 0.8,
             row = 0.5,
             col = 0.5,
             preview = {
-                scrollchars = { "┃", "" },
-                layout = "horizontal",
+                border = "none",
             },
         },
     },
