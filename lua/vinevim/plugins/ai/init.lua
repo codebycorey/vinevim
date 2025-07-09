@@ -1,17 +1,5 @@
 return {
     {
-        "github/copilot.vim",
-        cmd = "Copilot",
-        build = ":Copilot auth",
-        event = "InsertEnter",
-        lazy = false,
-        init = function()
-            vim.g.copilot_filetypes = {
-                ["typr"] = false,
-            }
-        end,
-    },
-    {
         "olimorris/codecompanion.nvim",
         cmd = {
             "CodeCompanion",
@@ -31,7 +19,7 @@ return {
                     return require("codecompanion.adapters").extend("copilot", {
                         schema = {
                             model = {
-                                default = "claude-3.7-sonnet",
+                                default = "claude-sonnet-4",
                             },
                             max_tokens = {
                                 default = 200000,

@@ -3,6 +3,7 @@
 local masonLspMap = {
     ["bashls"] = "bash-language-server",
     ["cssls"] = "css-lsp",
+    ["eslint"] = "eslint-lsp",
     ["html"] = "html-lsp",
     ["jsonls"] = "json-lsp",
     ["lua_ls"] = "lua-language-server",
@@ -13,7 +14,6 @@ local masonLspMap = {
     ["vtsls"] = "vtsls",
 }
 
----@type LazySpec
 return {
     {
         "williamboman/mason.nvim",
