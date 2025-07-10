@@ -38,7 +38,8 @@ return {
                     hint = "floating-big-letter",
                 },
             },
-            { "MunifTanjim/nui.nvim" },
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
         },
         keys = {
             {
