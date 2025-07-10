@@ -15,7 +15,7 @@ return {
             },
         },
         opts = {
-            kind = "split",
+            kind = "split_below_all",
             integrations = {
                 diffview = true,
             },
