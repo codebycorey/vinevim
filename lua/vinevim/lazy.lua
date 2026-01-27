@@ -17,7 +17,7 @@ require("lazy").setup({
     },
     change_detection = { notify = false },
     install = {
-        colorscheme = { "kanagawa" },
+        colorscheme = { "catppuccin" },
     },
     performance = {
         cache = { enabled = true },

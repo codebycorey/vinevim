@@ -31,18 +31,14 @@ return {
                 },
             },
             integrations = {
+                bufferline = true,
                 harpoon = true,
                 neotree = true,
                 indent_blankline = {
                     enabled = true,
                     colored_indent_levels = false,
                 },
-                telescope = {
-                    enabled = true,
-                    style = "nvchad",
-                },
                 illuminate = true,
-                flash = true,
                 mason = true,
                 gitsigns = true,
                 mini = {
@@ -86,7 +82,6 @@ return {
         },
         config = function(_, opts)
             require("kanagawa").setup(opts)
-            -- vim.cmd.colorscheme("kanagawa")
         end,
     },
     {

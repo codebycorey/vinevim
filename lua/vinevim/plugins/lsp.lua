@@ -12,7 +12,6 @@ return {
         dependencies = {
             { "b0o/SchemaStore.nvim" },
             { "saghen/blink.cmp" },
-            { "folke/neodev.nvim" },
             { "williamboman/mason.nvim" },
             { "ibhagwan/fzf-lua" },
         },

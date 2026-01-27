@@ -69,6 +69,4 @@ vim.opt.shortmess:append("c")
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- vim.g.netrw_liststyle=3
-
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }

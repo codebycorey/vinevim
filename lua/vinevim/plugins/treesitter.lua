@@ -64,7 +64,7 @@ return {
                 pattern = { "*.mdx" },
                 callback = function()
                     local buf = vim.api.nvim_get_current_buf()
-                    vim.api.nvim_buf_set_option(buf, "filetype", "markdown")
+                    vim.bo[buf].filetype = "markdown"
                 end,
             })
         end,

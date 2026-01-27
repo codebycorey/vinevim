@@ -119,13 +119,6 @@ return {
                 end,
                 desc = "[A]I [N]ew Chat",
             },
-            -- {
-            --     "<leader>aa",
-            --     function()
-            --         vim.cmd("CodeCompanionActions")
-            --     end,
-            --     desc = "[A]I [A]ctions",
-            -- },
             {
                 "<leader>aa",
                 function()
